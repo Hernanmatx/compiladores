@@ -6,7 +6,6 @@ Test Cases:
 	"100 * ( 2 + 12 )"	 ---> 1400 
 	"100 * ( 2 + 12 ) / 14" ---> 100	 
  */
-import java.util.Scanner;
 import java.util.Stack;
 
 public class EvaluateString {
@@ -107,10 +106,9 @@ public class EvaluateString {
 
     // Driver method to test above methods 
     public static void main(String[] args) {
-        Scanner ingreso = new Scanner(System.in);
-        String ingre;
-        System.out.println("Ingrese operacion separado por espacios");
-        ingre = ingreso.nextLine();
-        System.out.println(EvaluateString.evaluate(ingre));
+        /*System.out.println(EvaluateString.evaluate("10 + 2 * 6")); 
+		System.out.println(EvaluateString.evaluate("100 * 2 + 12")); 
+		System.out.println(EvaluateString.evaluate("100 * ( 2 + 12 )"));*/
+        System.out.println(EvaluateString.evaluate("100 + 1 * ( 2 + 2 ) ^ 3 "));
     }
 }
