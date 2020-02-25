@@ -1,16 +1,17 @@
-/* A Java program to evaluate a given expression where tokens are separated 
-by space. 
-Test Cases: 
-	"10 + 2 * 6"		 ---> 22 
-	"100 * 2 + 12"		 ---> 212 
-	"100 * ( 2 + 12 )"	 ---> 1400 
-	"100 * ( 2 + 12 ) / 14" ---> 100	 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
+package Principal;
+
 import java.util.Scanner;
 import java.util.Stack;
-
-public class EvaluateString {
-
+/**
+ *
+ * @author frans
+ */
+public class Compilador {
     public static int evaluate(String expression) {
         char[] tokens = expression.toCharArray();
         System.out.println(tokens);
@@ -104,13 +105,7 @@ public class EvaluateString {
         }
         return 0;
     }
-
-    // Driver method to test above methods 
-    public static void main(String[] args) {
-        Scanner ingreso = new Scanner(System.in);
-        String ingre;
-        System.out.println("Ingrese operacion separado por espacios");
-        ingre = ingreso.nextLine();
-        System.out.println(EvaluateString.evaluate(ingre));
-    }
+    
+    
+    
 }
