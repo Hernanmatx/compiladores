@@ -1,5 +1,6 @@
-package Principal;
+package Modelo;
 
+import Controlador.JCCompilador;
 import Vista.JDCompilador;
 import Vista.JFPrincipal;
 
@@ -12,7 +13,7 @@ public class Principal {
         
         JDCompilador c = new JDCompilador(principal, true);
         c.setLocationRelativeTo(null);
-        //ompilador nc = new Compilador(c);
+        JCCompilador nuevo = new JCCompilador(c);
         c.setVisible(true);
     }
     
