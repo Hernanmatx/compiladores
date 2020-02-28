@@ -1,24 +1,45 @@
 package Modelo;
 
+import Vista.JDCompilador;
+import java.util.ArrayList;
 import java.util.Stack;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Compilador {
-    
-    public String respu(String operacion){
-        String com;
-        int res;
-        res = Compilador.evaluacion(operacion);
-        com = Integer.toString(res);
-        return com;
+
+    ArrayList<Object> num = new ArrayList<>();
+    ArrayList<Object> ide = new ArrayList<>();
+    Stack<Integer> valores = new Stack<>();
+    Stack<Character> operadores = new Stack<>();
+
+    JDCompilador c = new JDCompilador(null, true);
+    DefaultTableModel modelo = new DefaultTableModel();
+
+    public Compilador(JDCompilador compilador) {
+        this.c = compilador;
     }
 
-    public static int evaluacion(String expresion) {
-        char[] tokens = expresion.toCharArray();
-        System.out.println(tokens);
+    public void respu(String operacion) {
+        int res;
+        res = evaluacion(operacion);
+        this.c.jtfRespuesta.setText(Integer.toString(evaluacion(operacion)));
+        this.c.jtfRespuesta.setVisible(true);
+        System.out.println(res);
+    }
 
-        Stack<Integer> valores = new Stack<Integer>();
-        Stack<Character> operadores = new Stack<Character>();
+    public Object lisnum() {
+        return num;
+    }
+
+    public Object liside() {
+        return ide;
+    }
+
+    public int evaluacion(String expresion) {
+
+        char[] tokens = expresion.toCharArray();
+
         for (int i = 0; i < tokens.length; i++) {
             if (tokens[i] == ' ') {
                 continue;
@@ -28,16 +49,19 @@ public class Compilador {
                 while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9') {
                     sbuf.append(tokens[i++]);
                 }
-                System.out.println(sbuf + " = Numero");
+                num.add(sbuf);
+                ide.add("Numero");
                 valores.push(Integer.parseInt(sbuf.toString()));
             } else if (tokens[i] == '(') {
-                System.out.println(tokens[i] + " = Parentesis Apertura");
+                num.add(tokens[i]);
+                ide.add("Parentesis Apertura");
                 operadores.push(tokens[i]);
             } else if (tokens[i] == ')') {
                 while (operadores.peek() != '(') {
                     valores.push(aplicarOperaciones(operadores.pop(), valores.pop(), valores.pop()));
                 }
-                System.out.println(tokens[i] + " = Parentesis Cierre");
+                num.add(tokens[i]);
+                ide.add("Parentesis Cierre");
                 operadores.pop();
             } else if (tokens[i] == '+' || tokens[i] == '-'
                     || tokens[i] == '^' || tokens[i] == '*' || tokens[i] == '/') {
@@ -45,7 +69,8 @@ public class Compilador {
                     valores.push(aplicarOperaciones(operadores.pop(), valores.pop(), valores.pop()));
                 }
                 operadores.push(tokens[i]);
-                System.out.println(tokens[i] + " = Operador Numerico");
+                num.add(tokens[i]);
+                ide.add("Operador Numerico");
             }
         }
         while (!operadores.empty()) {
