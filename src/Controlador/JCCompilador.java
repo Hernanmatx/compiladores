@@ -7,10 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.table.DefaultTableModel;
 
 public class JCCompilador implements ActionListener, KeyListener {
 
     JDCompilador c = new JDCompilador(null, true);
+    Compilador comp = new Compilador();
+    DefaultTableModel tabla = new DefaultTableModel();
 
     public JCCompilador(JDCompilador compilador) {
         this.c = compilador;
@@ -44,8 +47,7 @@ public class JCCompilador implements ActionListener, KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             String operacion;
             operacion = this.c.txtIngreso.getText();
-            Compilador co = new Compilador(operacion);
-            
+            c.jtfRespuesta.setText(comp.respu(operacion));
         }
     }
 
