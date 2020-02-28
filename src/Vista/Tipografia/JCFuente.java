@@ -1,4 +1,4 @@
-package Fuentes;
+package Vista.Tipografia;
 
 import java.awt.Font;
 import java.io.InputStream;

@@ -1,6 +1,7 @@
 package Controlador;
 
 import Vista.JDCompilador;
+import Vista.JDCreditos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -17,12 +18,20 @@ public class JCCompilador implements ActionListener, KeyListener {
     public JCCompilador(JDCompilador compilador){
         this.c = compilador;
         this.c.txtIngreso.addKeyListener(this);
+        this.c.btnCreditos.addActionListener(this);
         this.c.btnSalir.addActionListener(this);
     }
 
     
     public void actionPerformed(ActionEvent a) {
-        if (c.btnSalir == a.getSource()) {
+        if (c.btnCreditos == a.getSource()){
+            c.dispose();
+            JDCreditos cr = new JDCreditos(null,true);
+            cr.setLocationRelativeTo(c);
+            JCCreditos creditos = new JCCreditos(cr);
+            cr.setVisible(true);
+        }
+        else if(c.btnSalir == a.getSource()) {
             System.exit(0);
         }
     }

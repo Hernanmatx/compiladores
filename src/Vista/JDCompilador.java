@@ -37,6 +37,7 @@ public class JDCompilador extends javax.swing.JDialog {
         txtIngreso = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
+        btnCreditos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,6 +60,18 @@ public class JDCompilador extends javax.swing.JDialog {
         txtResultado.setRows(5);
         jScrollPane3.setViewportView(txtResultado);
 
+        btnCreditos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/EquipoP.png"))); // NOI18N
+        btnCreditos.setBorder(null);
+        btnCreditos.setBorderPainted(false);
+        btnCreditos.setContentAreaFilled(false);
+        btnCreditos.setFocusPainted(false);
+        btnCreditos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/EquipoG.png"))); // NOI18N
+        btnCreditos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreditosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,11 +84,17 @@ public class JDCompilador extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(btnCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addComponent(btnCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,6 +112,9 @@ public class JDCompilador extends javax.swing.JDialog {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
 
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditosActionPerformed
+    }//GEN-LAST:event_btnCreditosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,6 +160,7 @@ public class JDCompilador extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnCreditos;
     public javax.swing.JButton btnSalir;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
