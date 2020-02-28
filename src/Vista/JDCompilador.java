@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Vista.Tipografia.JCFuente;
 import java.awt.Color;
 
 
@@ -17,10 +18,23 @@ public class JDCompilador extends javax.swing.JDialog {
     /**
      * Creates new form Compilador
      */
+    JCFuente tipo;
+    
     public JDCompilador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
+        
+        scroll.setOpaque(false);
+        scroll.getViewport().setOpaque(false);
+        scroll.setBorder(null);
+        scroll.setViewportBorder(null);
+        txtIngreso.setBorder(null);
+        /*txtIngreso.setBackground(new Color(0, 0, 0, 10));
+        txtIngreso.setForeground(Color.BLACK);*/
+        
+        tipo = new JCFuente();
+        Titulo.setFont(tipo.fuente(tipo.ki, 0, 70));
     }
 
     /**
@@ -33,15 +47,21 @@ public class JDCompilador extends javax.swing.JDialog {
     private void initComponents() {
 
         btnSalir = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scroll = new javax.swing.JScrollPane();
         txtIngreso = new javax.swing.JTextArea();
         btnCreditos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jlResul = new javax.swing.JLabel();
         jtfRespuesta = new javax.swing.JTextField();
+        btnPDF = new javax.swing.JButton();
+        Titulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.png"))); // NOI18N
         btnSalir.setBorderPainted(false);
@@ -53,10 +73,19 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnSalirActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1144, 572, 150, 130));
 
+        txtIngreso.setBackground(new java.awt.Color(255, 255, 255));
         txtIngreso.setColumns(20);
-        txtIngreso.setRows(5);
-        jScrollPane2.setViewportView(txtIngreso);
+        txtIngreso.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtIngreso.setForeground(new java.awt.Color(0, 0, 0));
+        txtIngreso.setRows(2);
+        txtIngreso.setToolTipText("");
+        txtIngreso.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtIngreso.setCaretColor(new java.awt.Color(225, 225, 225));
+        scroll.setViewportView(txtIngreso);
+
+        getContentPane().add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 470, 50));
 
         btnCreditos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/EquipoP.png"))); // NOI18N
         btnCreditos.setBorder(null);
@@ -69,6 +98,7 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnCreditosActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 19, 110, 100));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,60 +119,44 @@ public class JDCompilador extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 911, 195));
+
         jlResul.setText("Resultado:");
+        getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 410, -1, -1));
 
         jtfRespuesta.setEditable(false);
+        getContentPane().add(jtfRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, 74, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(btnCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(175, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 911, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jlResul)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(btnCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(180, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlResul)
-                            .addComponent(jtfRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(117, 117, 117))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
+        btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/pdfP.png"))); // NOI18N
+        btnPDF.setBorder(null);
+        btnPDF.setBorderPainted(false);
+        btnPDF.setContentAreaFilled(false);
+        btnPDF.setEnabled(false);
+        btnPDF.setFocusPainted(false);
+        btnPDF.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/pdfG.png"))); // NOI18N
+        btnPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 125, 110, 100));
+
+        Titulo.setBackground(new java.awt.Color(255, 255, 255));
+        Titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Titulo.setForeground(new java.awt.Color(0, 0, 0));
+        Titulo.setText("Compilador");
+        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 310, 80));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Titulo2.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 6, 421, 215));
+
+        jSeparator1.setBackground(new java.awt.Color(247, 190, 190));
+        jSeparator1.setForeground(new java.awt.Color(247, 190, 190));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 670, 10));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setText("Ingrese la Operacion:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -153,6 +167,10 @@ public class JDCompilador extends javax.swing.JDialog {
 
     private void btnCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditosActionPerformed
     }//GEN-LAST:event_btnCreditosActionPerformed
+
+    private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
+        
+    }//GEN-LAST:event_btnPDFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,13 +216,18 @@ public class JDCompilador extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Titulo;
     public javax.swing.JButton btnCreditos;
+    private javax.swing.JButton btnPDF;
     public javax.swing.JButton btnSalir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     public javax.swing.JTable jTable1;
     public javax.swing.JLabel jlResul;
     public javax.swing.JTextField jtfRespuesta;
+    private javax.swing.JScrollPane scroll;
     public javax.swing.JTextArea txtIngreso;
     // End of variables declaration//GEN-END:variables
 }

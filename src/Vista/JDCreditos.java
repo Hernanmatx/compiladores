@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import Vista.Tipografia.JCFuente;
+import java.awt.Color;
+
 /**
  *
  * @author frans
@@ -14,9 +17,16 @@ public class JDCreditos extends javax.swing.JDialog {
     /**
      * Creates new form JDCreditos
      */
+    JCFuente tipo;
+    
     public JDCreditos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.getContentPane().setBackground(Color.WHITE);
+        
+        tipo = new JCFuente();
+        Titulo.setFont(tipo.fuente(tipo.ki, 0, 70));
     }
 
     /**
@@ -29,8 +39,11 @@ public class JDCreditos extends javax.swing.JDialog {
     private void initComponents() {
 
         btnCerrar = new javax.swing.JButton();
+        Titulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.png"))); // NOI18N
         btnCerrar.setBorderPainted(false);
@@ -42,23 +55,16 @@ public class JDCreditos extends javax.swing.JDialog {
                 btnCerrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 614, 150, 130));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(594, Short.MAX_VALUE)
-                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(614, Short.MAX_VALUE)
-                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        Titulo.setBackground(new java.awt.Color(255, 255, 255));
+        Titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Titulo.setForeground(new java.awt.Color(0, 0, 0));
+        Titulo.setText("Créditos");
+        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 310, 80));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Titulo3.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 19, 367, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -110,6 +116,8 @@ public class JDCreditos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Titulo;
     public javax.swing.JButton btnCerrar;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
