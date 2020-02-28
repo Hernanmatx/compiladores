@@ -1,6 +1,5 @@
 package Modelo;
 
-import Vista.JDCompilador;
 import java.util.Stack;
 import javax.swing.JOptionPane;
 
