@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.Compilador;
 import Vista.JDCompilador;
 import Vista.JDCreditos;
 import java.awt.event.ActionEvent;
@@ -41,6 +42,9 @@ public class JCCompilador implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            String operacion;
+            operacion = this.c.txtIngreso.getText();
+            Compilador co = new Compilador(operacion);
             
         }
     }
