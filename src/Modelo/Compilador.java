@@ -1,9 +1,18 @@
 package Modelo;
 
+import Vista.JDCompilador;
 import java.util.Stack;
 import javax.swing.JOptionPane;
 
 public class Compilador {
+    
+    public String respu(String operacion){
+        String com;
+        int res;
+        res = Compilador.evaluacion(operacion);
+        com = Integer.toString(res);
+        return com;
+    }
 
     public static int evaluacion(String expresion) {
         char[] tokens = expresion.toCharArray();
@@ -73,7 +82,7 @@ public class Compilador {
                 return a * b;
             case '/':
                 if (b == 0) {
-                    JOptionPane.showMessageDialog(null, "No se puede dividir dentro de cero");
+                    JOptionPane.showMessageDialog(null, "No se puede dividir dentro de cero", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 return a / b;
             case '^':
