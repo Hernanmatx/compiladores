@@ -4,7 +4,6 @@ import Vista.JDCompilador;
 import java.util.ArrayList;
 import java.util.Stack;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class Compilador {
 
@@ -14,18 +13,15 @@ public class Compilador {
     Stack<Character> operadores = new Stack<>();
 
     JDCompilador c = new JDCompilador(null, true);
-    DefaultTableModel modelo = new DefaultTableModel();
 
     public Compilador(JDCompilador compilador) {
         this.c = compilador;
     }
 
-    public void respu(String operacion) {
+    public String respu(String operacion) {
         int res;
         res = evaluacion(operacion);
-        this.c.jtfRespuesta.setText(Integer.toString(evaluacion(operacion)));
-        this.c.jtfRespuesta.setVisible(true);
-        System.out.println(res);
+        return Integer.toString(res);
     }
 
     public Object lisnum() {
