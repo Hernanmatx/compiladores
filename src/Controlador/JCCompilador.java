@@ -46,10 +46,10 @@ public class JCCompilador implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            String operacion;
+            String operacion, opr;
             operacion = this.c.txtIngreso.getText();
-            this.comp.respu(operacion);
+            opr = this.comp.respu(operacion);
+            this.c.jtfRespuesta.setText(opr);
         }
     }
-
 }
