@@ -50,6 +50,7 @@ public class JCCompilador implements ActionListener, KeyListener {
             operacion = this.c.txtIngreso.getText();
             opr = this.comp.respu(operacion);
             this.c.jtfRespuesta.setText(opr);
+            
         }
     }
 }
