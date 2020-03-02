@@ -122,10 +122,10 @@ public class JDCompilador extends javax.swing.JDialog {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 911, 195));
 
         jlResul.setText("Resultado:");
-        getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 410, -1, -1));
+        getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, -1, -1));
 
         jtfRespuesta.setEditable(false);
-        getContentPane().add(jtfRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, 74, -1));
+        getContentPane().add(jtfRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, 74, -1));
 
         btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/pdfP.png"))); // NOI18N
         btnPDF.setBorder(null);
