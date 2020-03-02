@@ -7,7 +7,6 @@ package Vista;
 
 import Vista.Tipografia.JCFuente;
 import java.awt.Color;
-import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -225,9 +224,6 @@ public class JDCompilador extends javax.swing.JDialog {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-        txtIngreso.setText("");
-        jtfRespuesta.setText("");
-        jTable1.setModel(new DefaultTableModel());
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     /**
