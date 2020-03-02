@@ -63,11 +63,11 @@ public class JDCompilador extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.png"))); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Salir.png"))); // NOI18N
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
         btnSalir.setFocusPainted(false);
-        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SalirG.png"))); // NOI18N
+        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/SalirG.png"))); // NOI18N
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
