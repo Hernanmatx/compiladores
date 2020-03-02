@@ -122,12 +122,14 @@ public class JDCompilador extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 911, 195));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, 420, 190));
 
         jlResul.setText("Resultado:");
         getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, -1, -1));
 
         jtfRespuesta.setEditable(false);
+        jtfRespuesta.setBackground(new java.awt.Color(255, 255, 255));
+        jtfRespuesta.setBorder(null);
         getContentPane().add(jtfRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, 74, -1));
 
         btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/pdfP.png"))); // NOI18N
@@ -275,7 +277,7 @@ public class JDCompilador extends javax.swing.JDialog {
     public javax.swing.JButton btnArchivo;
     public javax.swing.JButton btnBorrar;
     public javax.swing.JButton btnCreditos;
-    private javax.swing.JButton btnPDF;
+    public javax.swing.JButton btnPDF;
     public javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
