@@ -1,6 +1,5 @@
 package Modelo;
 
-import Vista.JDCompilador;
 import java.util.ArrayList;
 import java.util.Stack;
 import javax.swing.JOptionPane;
@@ -12,11 +11,6 @@ public class Compilador {
     Stack<Integer> valores = new Stack<>();
     Stack<Character> operadores = new Stack<>();
 
-    JDCompilador c = new JDCompilador(null, true);
-
-    public Compilador(JDCompilador compilador) {
-        this.c = compilador;
-    }
 
     public String respu(String operacion) {
         int res;
@@ -24,11 +18,11 @@ public class Compilador {
         return Integer.toString(res);
     }
 
-    public Object lisnum() {
+    public Object getNum() {
         return num;
     }
 
-    public Object liside() {
+    public Object getIde() {
         return ide;
     }
 
@@ -46,18 +40,18 @@ public class Compilador {
                     sbuf.append(tokens[i++]);
                 }
                 num.add(sbuf);
-                ide.add("Numero");
+                ide.add("Número");
                 valores.push(Integer.parseInt(sbuf.toString()));
             } else if (tokens[i] == '(') {
                 num.add(tokens[i]);
-                ide.add("Parentesis Apertura");
+                ide.add("Paréntesis Apertura");
                 operadores.push(tokens[i]);
             } else if (tokens[i] == ')') {
                 while (operadores.peek() != '(') {
                     valores.push(aplicarOperaciones(operadores.pop(), valores.pop(), valores.pop()));
                 }
                 num.add(tokens[i]);
-                ide.add("Parentesis Cierre");
+                ide.add("Paréntesis Cierre");
                 operadores.pop();
             } else if (tokens[i] == '+' || tokens[i] == '-'
                     || tokens[i] == '^' || tokens[i] == '*' || tokens[i] == '/') {
@@ -66,7 +60,7 @@ public class Compilador {
                 }
                 operadores.push(tokens[i]);
                 num.add(tokens[i]);
-                ide.add("Operador Numerico");
+                ide.add("Operador Numérico");
             }
         }
         while (!operadores.empty()) {
