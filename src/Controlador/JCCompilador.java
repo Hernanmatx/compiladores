@@ -51,15 +51,14 @@ public class JCCompilador implements ActionListener, KeyListener {
             JCCreditos creditos = new JCCreditos(cr);
             cr.setVisible(true);
         } else if (c.btnArchivo == a.getSource()) {
+            borrar();
             explador();
         } else if (c.btnPDF == a.getSource()) {
             imprimir();
         } else if (c.btnAnalizar == a.getSource()) {
             resultado();
         } else if (c.btnBorrar == a.getSource()) {
-            c.jtfRespuesta.setText("");
-            modelo.setRowCount(0);
-            ocultar();
+            borrar();
         } else if (c.btnSalir == a.getSource()) {
             System.exit(0);
         }
@@ -78,6 +77,13 @@ public class JCCompilador implements ActionListener, KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             resultado();
         }
+    }
+    
+    public void borrar(){
+        c.jtfRespuesta.setText("");
+        c.txtIngreso.setText("");
+        modelo.setRowCount(0);
+        ocultar();
     }
     
     public void ocultar(){
