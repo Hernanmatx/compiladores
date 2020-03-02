@@ -59,6 +59,9 @@ public class JDCompilador extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
+        btnArchivo = new javax.swing.JButton();
+        btnAnalizar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,7 +101,7 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnCreditosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 19, 110, 100));
+        getContentPane().add(btnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 100));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,7 +142,7 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnPDFActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 125, 110, 100));
+        getContentPane().add(btnPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 110, 100));
 
         Titulo.setBackground(new java.awt.Color(255, 255, 255));
         Titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -158,6 +161,45 @@ public class JDCompilador extends javax.swing.JDialog {
         jLabel2.setText("Ingrese la Operacion:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
 
+        btnArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/ArchivoP.png"))); // NOI18N
+        btnArchivo.setBorder(null);
+        btnArchivo.setBorderPainted(false);
+        btnArchivo.setContentAreaFilled(false);
+        btnArchivo.setFocusPainted(false);
+        btnArchivo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/ArchivoG.png"))); // NOI18N
+        btnArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnArchivoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 110, 100));
+
+        btnAnalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/AnalizadorP.png"))); // NOI18N
+        btnAnalizar.setBorder(null);
+        btnAnalizar.setBorderPainted(false);
+        btnAnalizar.setContentAreaFilled(false);
+        btnAnalizar.setFocusPainted(false);
+        btnAnalizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/AnalizadorG.png"))); // NOI18N
+        btnAnalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnalizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAnalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 280, 110, 100));
+
+        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/BorrarP.png"))); // NOI18N
+        btnBorrar.setBorder(null);
+        btnBorrar.setBorderPainted(false);
+        btnBorrar.setContentAreaFilled(false);
+        btnBorrar.setFocusPainted(false);
+        btnBorrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/BorrarG.png"))); // NOI18N
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 280, 110, 100));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -171,6 +213,18 @@ public class JDCompilador extends javax.swing.JDialog {
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
         
     }//GEN-LAST:event_btnPDFActionPerformed
+
+    private void btnArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnArchivoActionPerformed
+
+    private void btnAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAnalizarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,6 +271,9 @@ public class JDCompilador extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
+    public javax.swing.JButton btnAnalizar;
+    public javax.swing.JButton btnArchivo;
+    public javax.swing.JButton btnBorrar;
     public javax.swing.JButton btnCreditos;
     private javax.swing.JButton btnPDF;
     public javax.swing.JButton btnSalir;
