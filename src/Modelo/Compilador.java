@@ -1,8 +1,10 @@
 package Modelo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Stack;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class Compilador {
 
@@ -10,9 +12,11 @@ public class Compilador {
     ArrayList<Object> ide = new ArrayList<>();
     Stack<Integer> valores = new Stack<>();
     Stack<Character> operadores = new Stack<>();
-
+    UIManager UI = new UIManager();
 
     public String respu(String operacion) {
+        UI.put("OptionPane.background", Color.white);
+        UI.put("Panel.background", Color.white);
         int res;
         res = evaluacion(operacion);
         return Integer.toString(res);
