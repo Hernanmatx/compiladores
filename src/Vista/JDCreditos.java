@@ -45,11 +45,11 @@ public class JDCreditos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.png"))); // NOI18N
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Salir.png"))); // NOI18N
         btnCerrar.setBorderPainted(false);
         btnCerrar.setContentAreaFilled(false);
         btnCerrar.setFocusPainted(false);
-        btnCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SalirG.png"))); // NOI18N
+        btnCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/SalirG.png"))); // NOI18N
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
