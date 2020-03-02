@@ -12,11 +12,11 @@ public class Compilador {
     ArrayList<Object> ide = new ArrayList<>();
     Stack<Integer> valores = new Stack<>();
     Stack<Character> operadores = new Stack<>();
-    UIManager UI = new UIManager();
 
     public String respu(String operacion) {
-        UI.put("OptionPane.background", Color.white);
-        UI.put("Panel.background", Color.white);
+        UIManager.put("OptionPane.background", Color.white);
+        UIManager.put("Panel.background", Color.white);
+        String oper = operacion;
         int res;
         res = evaluacion(operacion);
         return Integer.toString(res);
@@ -33,7 +33,7 @@ public class Compilador {
     public int evaluacion(String expresion) {
 
         char[] tokens = expresion.toCharArray();
-
+        
         for (int i = 0; i < tokens.length; i++) {
             if (tokens[i] == ' ') {
                 continue;
@@ -83,7 +83,13 @@ public class Compilador {
         if ((op1 == '^' || op1 == '*') && (op2 == '+' || op2 == '-')) {
             return false;
         }
-        if ((op1 == '^' || op1 == '/') && (op2 == '*' || op2 == '/')) {
+        if ((op1 == '^' || op1 == '/') && (op2 == '+' || op2 == '-')) {
+            return false;
+        }
+        if ((op1 == '^' || op1 == '*') && (op2 == '*' || op2 == '/')) {
+            return false;
+        }
+        if ((op1 == '^' || op1 == '/') && (op2 == '/' || op2 == '*')) {
             return false;
         } else {
             return true;
