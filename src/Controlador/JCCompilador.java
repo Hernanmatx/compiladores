@@ -26,7 +26,7 @@ public class JCCompilador implements ActionListener, KeyListener {
     Compilador comp = new Compilador();
     DefaultTableModel modelo = new DefaultTableModel();
     private int contador = 0, cont = 1;
-    
+
     public JCCompilador(JDCompilador compilador) {
         this.c = compilador;
         this.c.txtIngreso.addKeyListener(this);
@@ -39,7 +39,7 @@ public class JCCompilador implements ActionListener, KeyListener {
         this.c.jtfRespuesta.addActionListener(this);
         this.c.jtfRespuesta.setEditable(false);
         this.c.jTable1.setEnabled(false);
-        
+
         ocultar();
     }
 
@@ -51,14 +51,15 @@ public class JCCompilador implements ActionListener, KeyListener {
             JCCreditos creditos = new JCCreditos(cr);
             cr.setVisible(true);
         } else if (c.btnArchivo == a.getSource()) {
-            borrar();
             explador();
         } else if (c.btnPDF == a.getSource()) {
             imprimir();
         } else if (c.btnAnalizar == a.getSource()) {
             resultado();
         } else if (c.btnBorrar == a.getSource()) {
-            borrar();
+            c.jtfRespuesta.setText("");
+            modelo.setRowCount(0);
+            ocultar();
         } else if (c.btnSalir == a.getSource()) {
             System.exit(0);
         }
@@ -78,37 +79,44 @@ public class JCCompilador implements ActionListener, KeyListener {
             resultado();
         }
     }
-    
-    public void borrar(){
+
+    public void borrar() {
         c.jtfRespuesta.setText("");
         c.txtIngreso.setText("");
         modelo.setRowCount(0);
         ocultar();
     }
-    
-    public void ocultar(){
+
+    public void ocultar() {
         c.btnBorrar.setVisible(false);
         c.jlResul.setVisible(false);
         c.jtfRespuesta.setVisible(false);
         c.btnBorrar.setVisible(false);
         c.btnPDF.setEnabled(false);
     }
-    
-    public void mostrar(){
+
+    public void mostrar() {
         c.btnBorrar.setVisible(true);
         c.jlResul.setVisible(true);
         c.jtfRespuesta.setVisible(true);
         c.btnBorrar.setVisible(true);
         c.btnPDF.setEnabled(true);
     }
-    
-    public void resultado(){
-        String operacion, opr;
+
+    public void resultado() {
+        String operacion = null, opr = null;
         operacion = this.c.txtIngreso.getText();
-        opr = this.comp.respu(operacion);
-        this.c.jtfRespuesta.setText(opr);
+        this.comp.asignacionNombre(operacion);
         datos();
-        mostrar();
+        try {
+            opr = this.comp.respu(operacion);
+            this.c.jtfRespuesta.setText(opr);
+            mostrar();
+
+        } catch (ArithmeticException e) {
+            JOptionPane.showMessageDialog(null, "No se puede dividir dentro de cero", "Error", JOptionPane.ERROR_MESSAGE);
+            this.c.jtfRespuesta.setText("");
+        }
     }
 
     public void datos() {
@@ -127,19 +135,19 @@ public class JCCompilador implements ActionListener, KeyListener {
             identi[i] = ide.get(i);
         }
         modelo.setColumnIdentifiers(new Object[]{"Número", "Token", "Identificador"});
-        while(contador < num.size()) {
+        while (contador < num.size()) {
             modelo.addRow(new Object[]{cont++, numero[contador], identi[contador]});
             contador++;
         }
         this.c.jTable1.setModel(modelo);
     }
-    
-    public void imprimir(){
+
+    public void imprimir() {
         if (c.jtfRespuesta.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Es necesario resolver la operación primero", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } else {
             MessageFormat header1 = new MessageFormat("Operación         Resultado: " + c.jtfRespuesta.getText() + "");
-            
+
             MessageFormat footer = new MessageFormat("Página{0,number,integer}");
             try {
                 c.jTable1.print(JTable.PrintMode.NORMAL, header1, footer);
@@ -148,20 +156,18 @@ public class JCCompilador implements ActionListener, KeyListener {
             }
         }
     }
-    
-    public void explador(){
+
+    public void explador() {
         JFileChooser chooser = new JFileChooser();
-            chooser.showOpenDialog(null);
-            File archivo = new File(chooser.getSelectedFile().getAbsolutePath());
-        
+        chooser.showOpenDialog(null);
+        File archivo = new File(chooser.getSelectedFile().getAbsolutePath());
+
         try {
             String ST = new String(Files.readAllBytes(archivo.toPath()));
             c.txtIngreso.setText(ST);
-        }
-        catch(FileNotFoundException ex){
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(JDCompilador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (IOException ex){
+        } catch (IOException ex) {
             Logger.getLogger(JDCompilador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
