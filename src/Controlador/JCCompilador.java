@@ -3,6 +3,7 @@ package Controlador;
 import Modelo.Compilador;
 import Vista.JDCompilador;
 import Vista.JDCreditos;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 public class JCCompilador implements ActionListener, KeyListener {
@@ -25,7 +27,7 @@ public class JCCompilador implements ActionListener, KeyListener {
     JDCompilador c = new JDCompilador(null, true);
     Compilador comp = new Compilador();
     DefaultTableModel modelo = new DefaultTableModel();
-    private int contador = 0, cont = 1;
+    private int contador = 0, cont = 1, coA = 0, coC = 0;
 
     public JCCompilador(JDCompilador compilador) {
         this.c = compilador;
@@ -40,6 +42,8 @@ public class JCCompilador implements ActionListener, KeyListener {
         this.c.jtfRespuesta.setEditable(false);
         this.c.jTable1.setEnabled(false);
         ocultar();
+        UIManager.put("OptionPane.background", Color.white);
+        UIManager.put("Panel.background", Color.white);
     }
 
     public void actionPerformed(ActionEvent a) {
@@ -110,14 +114,32 @@ public class JCCompilador implements ActionListener, KeyListener {
         this.c.txtIngreso.setText(operacion.replaceAll("\n", ""));
         datos();
         this.c.btnBorrar.setVisible(true);
-        opr = this.comp.respu(operacion);
-        por = this.comp.getCona();
-        if (por == 1) {
-            this.c.jlResul.setVisible(false);
-            this.c.jtfRespuesta.setText("");
+        if (this.comp.procesarCadena(operacion) == true) {
+            opr = this.comp.respu(operacion);
+            por = this.comp.getCona();
+            if (por == 1) {
+                this.c.jlResul.setVisible(false);
+                this.c.jtfRespuesta.setText("");
+            } else {
+                this.c.jtfRespuesta.setText(opr);
+                mostrar();
+            }
         } else {
-            this.c.jtfRespuesta.setText(opr);
-            mostrar();
+            coC = (this.comp.getConbalanC() - this.comp.getConbalanA());
+            coA = (this.comp.getConbalanA() - this.comp.getConbalanC());
+            if (this.comp.getConbalanA() > this.comp.getConbalanC()) {
+                if (coA < 2) {
+                    JOptionPane.showMessageDialog(null, "Falta 1 paréntesis de cierre", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Faltan " + coA + " paréntesis de cierre", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                if (coC < 2) {
+                    JOptionPane.showMessageDialog(null, "Falta 1 paréntesis de apertura", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Faltan " + coC + " paréntesis de aperutra", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
     }
 
