@@ -8,7 +8,7 @@ import javax.swing.UIManager;
 
 public class Compilador {
 
-    int cona;
+    public int cona;
     ArrayList<Object> num = new ArrayList<>();
     ArrayList<Object> ide = new ArrayList<>();
     Stack<Float> valores = new Stack<>();
@@ -172,7 +172,7 @@ public class Compilador {
         }
     }
 
-    public static float aplicarOperaciones(char op, float b, float a) {
+    public  float aplicarOperaciones(char op, float b, float a) {
         switch (op) {
             case '+':
                 return a + b;
@@ -181,6 +181,10 @@ public class Compilador {
             case '*':
                 return a * b;
             case '/':
+                if (b == 0) {
+                    cona = 1;
+                    JOptionPane.showMessageDialog(null, "No se puede dividir dentro de cero", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 return a / b;
             case '^':
                 double s = Math.pow(a, b);

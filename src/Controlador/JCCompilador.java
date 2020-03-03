@@ -39,7 +39,6 @@ public class JCCompilador implements ActionListener, KeyListener {
         this.c.jtfRespuesta.addActionListener(this);
         this.c.jtfRespuesta.setEditable(false);
         this.c.jTable1.setEnabled(false);
-
         ocultar();
     }
 
@@ -109,21 +108,15 @@ public class JCCompilador implements ActionListener, KeyListener {
         this.comp.asignacionNombre(operacion);
         this.c.jtfRespuesta.setText("");
         datos();
-        try {
-            this.c.btnBorrar.setVisible(true);
-            opr = this.comp.respu(operacion);
-            por = this.comp.getCona();
-            if (por == 1) {
-                this.c.jlResul.setVisible(false);
-                this.c.jtfRespuesta.setText("");
-            } else {
-                this.c.jtfRespuesta.setText(opr);
-                mostrar();
-            }
-        } catch (ArithmeticException e) {
-            JOptionPane.showMessageDialog(null, "No se puede dividir dentro de cero", "Error", JOptionPane.ERROR_MESSAGE);
+        this.c.btnBorrar.setVisible(true);
+        opr = this.comp.respu(operacion);
+        por = this.comp.getCona();
+        if (por == 1) {
+            this.c.jlResul.setVisible(false);
             this.c.jtfRespuesta.setText("");
-            this.c.btnBorrar.setVisible(true);
+        } else {
+            this.c.jtfRespuesta.setText(opr);
+            mostrar();
         }
     }
 
