@@ -21,12 +21,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class JCCompilador implements ActionListener, KeyListener {
-
+    
     JDCompilador c = new JDCompilador(null, true);
     Compilador comp = new Compilador();
     DefaultTableModel modelo = new DefaultTableModel();
     private int contador = 0, cont = 1;
-
+    
     public JCCompilador(JDCompilador compilador) {
         this.c = compilador;
         this.c.txtIngreso.addKeyListener(this);
@@ -39,10 +39,10 @@ public class JCCompilador implements ActionListener, KeyListener {
         this.c.jtfRespuesta.addActionListener(this);
         this.c.jtfRespuesta.setEditable(false);
         this.c.jTable1.setEnabled(false);
-
+        
         ocultar();
     }
-
+    
     public void actionPerformed(ActionEvent a) {
         if (c.btnCreditos == a.getSource()) {
             c.dispose();
@@ -63,29 +63,29 @@ public class JCCompilador implements ActionListener, KeyListener {
             System.exit(0);
         }
     }
-
+    
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
     }
-
+    
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             resultado();
         }
     }
-
+    
     public void borrar() {
         c.jtfRespuesta.setText("");
         c.txtIngreso.setText("");
         modelo.setRowCount(0);
         ocultar();
     }
-
+    
     public void ocultar() {
         c.btnBorrar.setVisible(false);
         c.jlResul.setVisible(false);
@@ -93,7 +93,7 @@ public class JCCompilador implements ActionListener, KeyListener {
         c.btnBorrar.setVisible(false);
         c.btnPDF.setEnabled(false);
     }
-
+    
     public void mostrar() {
         c.btnBorrar.setVisible(true);
         c.jlResul.setVisible(true);
@@ -101,23 +101,32 @@ public class JCCompilador implements ActionListener, KeyListener {
         c.btnBorrar.setVisible(true);
         c.btnPDF.setEnabled(true);
     }
-
+    
     public void resultado() {
         String operacion = null, opr = null;
+        int por;
         operacion = this.c.txtIngreso.getText();
         this.comp.asignacionNombre(operacion);
+        this.c.jtfRespuesta.setText("");
         datos();
         try {
             opr = this.comp.respu(operacion);
-            this.c.jtfRespuesta.setText(opr);
-            mostrar();
-
+            por = this.comp.getCona();
+            if (por == 1) {
+                this.c.jtfRespuesta.setText("");
+                this.c.jlResul.setVisible(false);
+                this.c.btnBorrar.setVisible(true);
+                borrar();
+            } else {
+                this.c.jtfRespuesta.setText(opr);
+                mostrar();
+            }
         } catch (ArithmeticException e) {
             JOptionPane.showMessageDialog(null, "No se puede dividir dentro de cero", "Error", JOptionPane.ERROR_MESSAGE);
             this.c.jtfRespuesta.setText("");
         }
     }
-
+    
     public void datos() {
         cont = 1;
         this.modelo.setRowCount(0);
@@ -140,13 +149,13 @@ public class JCCompilador implements ActionListener, KeyListener {
         }
         this.c.jTable1.setModel(modelo);
     }
-
+    
     public void imprimir() {
         if (c.jtfRespuesta.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Es necesario resolver la operación primero", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } else {
             MessageFormat header1 = new MessageFormat("Operación         Resultado: " + c.jtfRespuesta.getText() + "");
-
+            
             MessageFormat footer = new MessageFormat("Página{0,number,integer}");
             try {
                 c.jTable1.print(JTable.PrintMode.NORMAL, header1, footer);
@@ -155,12 +164,12 @@ public class JCCompilador implements ActionListener, KeyListener {
             }
         }
     }
-
+    
     public void explador() {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File archivo = new File(chooser.getSelectedFile().getAbsolutePath());
-
+        
         try {
             String ST = new String(Files.readAllBytes(archivo.toPath()));
             c.txtIngreso.setText(ST);

@@ -3,14 +3,17 @@ package Modelo;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Stack;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class Compilador {
 
+    int cona;
     ArrayList<Object> num = new ArrayList<>();
     ArrayList<Object> ide = new ArrayList<>();
     Stack<Integer> valores = new Stack<>();
     Stack<Character> operadores = new Stack<>();
+    
 
     public String respu(String operacion) {
         UIManager.put("OptionPane.background", Color.white);
@@ -50,6 +53,8 @@ public class Compilador {
             } else if (tokens[i] == ')') {
                 while (operadores.peek() != '(') {
                     valores.push(aplicarOperaciones(operadores.pop(), valores.pop(), valores.pop()));
+
+                    JOptionPane.showMessageDialog(null, "Falta parentesis cierre", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 operadores.pop();
             } else if (tokens[i] == '+' || tokens[i] == '-'
@@ -67,6 +72,7 @@ public class Compilador {
     }
 
     public int asignacionNombre(String expresion) {
+        cona = 0;
         valores.clear();
         operadores.clear();
         char[] token = null;
@@ -76,6 +82,7 @@ public class Compilador {
             if (token[i] == ' ') {
                 continue;
             }
+
             if (token[i] >= '0' && token[i] <= '9') {
                 StringBuffer sbuff = new StringBuffer();
                 while (i < token.length && token[i] >= '0' && token[i] <= '9') {
@@ -97,9 +104,28 @@ public class Compilador {
                 operadores.push(token[i]);
                 num.add(token[i]);
                 ide.add("Operador Numérico");
+
+            } else if (Character.isLetter(token[i])) {
+                JOptionPane.showMessageDialog(null, "No se permiten letras", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (token[i] != '+' || token[i] != '-' || token[i] != '*' || token[i] != '/'
+                    || token[i] != '^') {
+                if (token[i] == '[' || token[i] == ']') {
+                    JOptionPane.showMessageDialog(null, "No se admiten corchete", "Error", JOptionPane.ERROR_MESSAGE);
+                    cona = 1;
+                } else if (token[i] == '{' || token[i] == '}') {
+                    JOptionPane.showMessageDialog(null, "No se admiten llaves", "Error", JOptionPane.ERROR_MESSAGE);
+                    cona = 1;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Signo no reconocido", "Error", JOptionPane.ERROR_MESSAGE);
+                    cona = 1;
+                }
             }
         }
         return valores.pop();
+    }
+
+    public int getCona() {
+        return cona;
     }
 
     public static boolean precedencia(char op1, char op2) {
