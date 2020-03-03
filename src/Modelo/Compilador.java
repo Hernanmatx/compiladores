@@ -141,6 +141,10 @@ public class Compilador {
                         JOptionPane.showMessageDialog(null, "No se permiten llaves", "Error", JOptionPane.ERROR_MESSAGE);
                         cona = 1;
                         break;
+                    case '\n':
+                        JOptionPane.showMessageDialog(null, "No se permite más de un salto de linea", "Error", JOptionPane.ERROR_MESSAGE);
+                        cona = 1;
+                        break;
                     default:
                         JOptionPane.showMessageDialog(null, "Signo no reconocido", "Error", JOptionPane.ERROR_MESSAGE);
                         cona = 1;
@@ -170,12 +174,12 @@ public class Compilador {
         }
         if ((op1 == '*' || op1 == '/') && (op2 == '+' || op2 == '-')) {
             return false;
-        }else {
+        } else {
             return true;
         }
     }
 
-    public  float aplicarOperaciones(char op, float b, float a) {
+    public float aplicarOperaciones(char op, float b, float a) {
         switch (op) {
             case '+':
                 return a + b;

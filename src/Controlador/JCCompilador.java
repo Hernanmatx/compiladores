@@ -107,6 +107,7 @@ public class JCCompilador implements ActionListener, KeyListener {
         operacion = this.c.txtIngreso.getText();
         this.comp.asignacionNombre(operacion);
         this.c.jtfRespuesta.setText("");
+        this.c.txtIngreso.setText(operacion.replaceAll("\n", ""));
         datos();
         this.c.btnBorrar.setVisible(true);
         opr = this.comp.respu(operacion);
