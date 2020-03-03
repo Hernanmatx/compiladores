@@ -13,7 +13,6 @@ public class Compilador {
     ArrayList<Object> ide = new ArrayList<>();
     Stack<Integer> valores = new Stack<>();
     Stack<Character> operadores = new Stack<>();
-    
 
     public String respu(String operacion) {
         UIManager.put("OptionPane.background", Color.white);
@@ -99,9 +98,33 @@ public class Compilador {
                 operadores.pop();
             } else if (token[i] == '+' || token[i] == '-'
                     || token[i] == '^' || token[i] == '*' || token[i] == '/') {
-                operadores.push(token[i]);
-                num.add(token[i]);
-                ide.add("Operador Numérico");
+                switch (token[i]) {
+                    case '+':
+                        operadores.push(token[i]);
+                        num.add(token[i]);
+                        ide.add("Operador Suma");
+                        break;
+                    case '-':
+                        operadores.push(token[i]);
+                        num.add(token[i]);
+                        ide.add("Operador Resta");
+                        break;
+                    case '^':
+                        operadores.push(token[i]);
+                        num.add(token[i]);
+                        ide.add("Operador Exponente");
+                        break;
+                    case '*':
+                        operadores.push(token[i]);
+                        num.add(token[i]);
+                        ide.add("Operador Multiplicación");
+                        break;
+                    case '/':
+                        operadores.push(token[i]);
+                        num.add(token[i]);
+                        ide.add("Operador División");
+                        break;
+                }
 
             } else if (Character.isLetter(token[i])) {
                 JOptionPane.showMessageDialog(null, "No se permiten letras", "Error", JOptionPane.ERROR_MESSAGE);
