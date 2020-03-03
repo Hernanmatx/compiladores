@@ -53,8 +53,6 @@ public class Compilador {
             } else if (tokens[i] == ')') {
                 while (operadores.peek() != '(') {
                     valores.push(aplicarOperaciones(operadores.pop(), valores.pop(), valores.pop()));
-
-                    JOptionPane.showMessageDialog(null, "Falta parentesis cierre", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 operadores.pop();
             } else if (tokens[i] == '+' || tokens[i] == '-'
@@ -109,15 +107,21 @@ public class Compilador {
                 JOptionPane.showMessageDialog(null, "No se permiten letras", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (token[i] != '+' || token[i] != '-' || token[i] != '*' || token[i] != '/'
                     || token[i] != '^') {
-                if (token[i] == '[' || token[i] == ']') {
-                    JOptionPane.showMessageDialog(null, "No se admiten corchete", "Error", JOptionPane.ERROR_MESSAGE);
-                    cona = 1;
-                } else if (token[i] == '{' || token[i] == '}') {
-                    JOptionPane.showMessageDialog(null, "No se admiten llaves", "Error", JOptionPane.ERROR_MESSAGE);
-                    cona = 1;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Signo no reconocido", "Error", JOptionPane.ERROR_MESSAGE);
-                    cona = 1;
+                switch (token[i]) {
+                    case '[':
+                    case ']':
+                        JOptionPane.showMessageDialog(null, "No se permiten corchetes", "Error", JOptionPane.ERROR_MESSAGE);
+                        cona = 1;
+                        break;
+                    case '{':
+                    case '}':
+                        JOptionPane.showMessageDialog(null, "No se permiten llaves", "Error", JOptionPane.ERROR_MESSAGE);
+                        cona = 1;
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Signo no reconocido", "Error", JOptionPane.ERROR_MESSAGE);
+                        cona = 1;
+                        break;
                 }
             }
         }
