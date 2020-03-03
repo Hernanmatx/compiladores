@@ -11,16 +11,16 @@ public class Compilador {
     int cona;
     ArrayList<Object> num = new ArrayList<>();
     ArrayList<Object> ide = new ArrayList<>();
-    Stack<Integer> valores = new Stack<>();
+    Stack<Float> valores = new Stack<>();
     Stack<Character> operadores = new Stack<>();
 
     public String respu(String operacion) {
         UIManager.put("OptionPane.background", Color.white);
         UIManager.put("Panel.background", Color.white);
         String oper = operacion;
-        int res;
+        float res;
         res = evaluacion(operacion);
-        return Integer.toString(res);
+        return Float.toString(res);
     }
 
     public Object getNum() {
@@ -31,7 +31,7 @@ public class Compilador {
         return ide;
     }
 
-    public int evaluacion(String expresion) {
+    public float evaluacion(String expresion) {
         valores.clear();
         operadores.clear();
         char[] tokens = null;
@@ -46,7 +46,7 @@ public class Compilador {
                 while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9') {
                     sbuf.append(tokens[i++]);
                 }
-                valores.push(Integer.parseInt(sbuf.toString()));
+                valores.push(Float.parseFloat(sbuf.toString()));
             } else if (tokens[i] == '(') {
                 operadores.push(tokens[i]);
             } else if (tokens[i] == ')') {
@@ -68,7 +68,7 @@ public class Compilador {
         return valores.pop();
     }
 
-    public int asignacionNombre(String expresion) {
+    public float asignacionNombre(String expresion) {
         cona = 0;
         valores.clear();
         operadores.clear();
@@ -87,7 +87,7 @@ public class Compilador {
                 }
                 num.add(sbuff);
                 ide.add("Número");
-                valores.push(Integer.parseInt(sbuff.toString()));
+                valores.push(Float.parseFloat(sbuff.toString()));
             } else if (token[i] == '(') {
                 num.add(token[i]);
                 ide.add("Paréntesis Apertura");
@@ -167,18 +167,12 @@ public class Compilador {
         }
         if ((op1 == '^' || op1 == '/') && (op2 == '+' || op2 == '-')) {
             return false;
-        }
-        if ((op1 == '^' || op1 == '*') && (op2 == '*' || op2 == '/')) {
-            return false;
-        }
-        if ((op1 == '^' || op1 == '/') && (op2 == '/' || op2 == '*')) {
-            return false;
         } else {
             return true;
         }
     }
 
-    public static int aplicarOperaciones(char op, int b, int a) {
+    public static float aplicarOperaciones(char op, float b, float a) {
         switch (op) {
             case '+':
                 return a + b;
