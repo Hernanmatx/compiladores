@@ -13,6 +13,49 @@ public class Compilador {
     ArrayList<Object> ide = new ArrayList<>();
     Stack<Float> valores = new Stack<>();
     Stack<Character> operadores = new Stack<>();
+    private Stack<Character> stackLetras = new Stack<>();
+    boolean balan;
+    int conbalanA, conbalanC;
+
+    public boolean procesarCadena(String cadena) {
+        conbalanA = 0;
+        conbalanC = 0;
+        balan = false;
+        stackLetras.clear();
+        char arrayDeLetras[] = cadena.toCharArray();
+        int i;
+        for (i = 0; i < arrayDeLetras.length; i++) {
+            if (arrayDeLetras[i] == '(') {
+                stackLetras.push(arrayDeLetras[i]);
+                switch (arrayDeLetras[i]) {
+                    case '(':
+                        conbalanA++;
+                        break;
+                }
+            } else if (arrayDeLetras[i] == ')') {
+                switch (arrayDeLetras[i]) {
+                    case ')':
+                        conbalanC++;
+                        break;
+                }
+                if (!stackLetras.empty() && stackLetras.peek() != ')') {
+                    stackLetras.pop();
+                } else {
+                    stackLetras.push(arrayDeLetras[i]);
+                }
+            }
+        }
+        balan = stackLetras.empty();
+        return balan;
+    }
+
+    public int getConbalanA() {
+        return conbalanA;
+    }
+    
+    public int getConbalanC() {
+        return conbalanC;
+    }
 
     public String respu(String operacion) {
         UIManager.put("OptionPane.background", Color.white);
