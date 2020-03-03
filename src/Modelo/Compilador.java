@@ -3,7 +3,6 @@ package Modelo;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Stack;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class Compilador {
@@ -31,9 +30,11 @@ public class Compilador {
     }
 
     public int evaluacion(String expresion) {
+        valores.clear();
+        operadores.clear();
+        char[] tokens = null;
+        tokens = expresion.toCharArray();
 
-        char[] tokens = expresion.toCharArray();
-        
         for (int i = 0; i < tokens.length; i++) {
             if (tokens[i] == ' ') {
                 continue;
@@ -43,19 +44,13 @@ public class Compilador {
                 while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9') {
                     sbuf.append(tokens[i++]);
                 }
-                num.add(sbuf);
-                ide.add("Número");
                 valores.push(Integer.parseInt(sbuf.toString()));
             } else if (tokens[i] == '(') {
-                num.add(tokens[i]);
-                ide.add("Paréntesis Apertura");
                 operadores.push(tokens[i]);
             } else if (tokens[i] == ')') {
                 while (operadores.peek() != '(') {
                     valores.push(aplicarOperaciones(operadores.pop(), valores.pop(), valores.pop()));
                 }
-                num.add(tokens[i]);
-                ide.add("Paréntesis Cierre");
                 operadores.pop();
             } else if (tokens[i] == '+' || tokens[i] == '-'
                     || tokens[i] == '^' || tokens[i] == '*' || tokens[i] == '/') {
@@ -63,12 +58,46 @@ public class Compilador {
                     valores.push(aplicarOperaciones(operadores.pop(), valores.pop(), valores.pop()));
                 }
                 operadores.push(tokens[i]);
-                num.add(tokens[i]);
-                ide.add("Operador Numérico");
             }
         }
         while (!operadores.empty()) {
             valores.push(aplicarOperaciones(operadores.pop(), valores.pop(), valores.pop()));
+        }
+        return valores.pop();
+    }
+
+    public int asignacionNombre(String expresion) {
+        valores.clear();
+        operadores.clear();
+        char[] token = null;
+        token = expresion.toCharArray();
+
+        for (int i = 0; i < token.length; i++) {
+            if (token[i] == ' ') {
+                continue;
+            }
+            if (token[i] >= '0' && token[i] <= '9') {
+                StringBuffer sbuff = new StringBuffer();
+                while (i < token.length && token[i] >= '0' && token[i] <= '9') {
+                    sbuff.append(token[i++]);
+                }
+                num.add(sbuff);
+                ide.add("Número");
+                valores.push(Integer.parseInt(sbuff.toString()));
+            } else if (token[i] == '(') {
+                num.add(token[i]);
+                ide.add("Paréntesis Apertura");
+                operadores.push(token[i]);
+            } else if (token[i] == ')') {
+                num.add(token[i]);
+                ide.add("Paréntesis Cierre");
+                operadores.pop();
+            } else if (token[i] == '+' || token[i] == '-'
+                    || token[i] == '^' || token[i] == '*' || token[i] == '/') {
+                operadores.push(token[i]);
+                num.add(token[i]);
+                ide.add("Operador Numérico");
+            }
         }
         return valores.pop();
     }
@@ -105,9 +134,6 @@ public class Compilador {
             case '*':
                 return a * b;
             case '/':
-                if (b == 0) {
-                    JOptionPane.showMessageDialog(null, "No se puede dividir dentro de cero", "Error", JOptionPane.ERROR_MESSAGE);
-                }
                 return a / b;
             case '^':
                 double s = Math.pow(a, b);
