@@ -52,7 +52,7 @@ public class Compilador {
     public int getConbalanA() {
         return conbalanA;
     }
-    
+
     public int getConbalanC() {
         return conbalanC;
     }
@@ -122,7 +122,6 @@ public class Compilador {
             if (token[i] == ' ') {
                 continue;
             }
-
             if (token[i] >= '0' && token[i] <= '9') {
                 StringBuffer sbuff = new StringBuffer();
                 while (i < token.length && token[i] >= '0' && token[i] <= '9') {
