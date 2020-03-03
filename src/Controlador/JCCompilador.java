@@ -57,8 +57,7 @@ public class JCCompilador implements ActionListener, KeyListener {
         } else if (c.btnAnalizar == a.getSource()) {
             resultado();
         } else if (c.btnBorrar == a.getSource()) {
-            c.jtfRespuesta.setText("");
-            modelo.setRowCount(0);
+            borrar();
             ocultar();
         } else if (c.btnSalir == a.getSource()) {
             System.exit(0);

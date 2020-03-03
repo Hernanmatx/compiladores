@@ -27,6 +27,9 @@ public class JDCreditos extends javax.swing.JDialog {
         
         tipo = new JCFuente();
         Titulo.setFont(tipo.fuente(tipo.ki, 0, 70));
+        c.setFont(tipo.fuente(tipo.ho, 0, 13));
+        d.setFont(tipo.fuente(tipo.ho, 0, 13));
+        e.setFont(tipo.fuente(tipo.ho, 0, 13));
     }
 
     /**
@@ -41,6 +44,9 @@ public class JDCreditos extends javax.swing.JDialog {
         btnCerrar = new javax.swing.JButton();
         Titulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        c = new javax.swing.JLabel();
+        d = new javax.swing.JLabel();
+        e = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -65,6 +71,21 @@ public class JDCreditos extends javax.swing.JDialog {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Titulo3.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 19, 367, -1));
+
+        c.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        c.setForeground(new java.awt.Color(0, 0, 0));
+        c.setText("Emerson Fransuani Cuyuch Aguilar            4490-17-4001");
+        getContentPane().add(c, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 600, 40));
+
+        d.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        d.setForeground(new java.awt.Color(0, 0, 0));
+        d.setText("Hernán Adriel Martínez Mazariegos           4490-17-7386 ");
+        getContentPane().add(d, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 600, 50));
+
+        e.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        e.setForeground(new java.awt.Color(0, 0, 0));
+        e.setText("Ashley Sarahi López Alvarado                  4490-17-16584");
+        getContentPane().add(e, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 600, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -118,6 +139,9 @@ public class JDCreditos extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
     public javax.swing.JButton btnCerrar;
+    private javax.swing.JLabel c;
+    private javax.swing.JLabel d;
+    private javax.swing.JLabel e;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

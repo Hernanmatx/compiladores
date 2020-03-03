@@ -15,6 +15,7 @@ public class JCFuente {
     public String so = "Sophia.ttf";
     public String su = "Sunday.ttf";
     public String co = "Compass.ttf";
+    public String ho = "Hoam.otf";
     
     public Font fuente(String fontName, int estilo, float tamanio) {
         try {
