@@ -54,8 +54,8 @@ public class JDCompilador extends javax.swing.JDialog {
         scroll = new javax.swing.JScrollPane();
         txtIngreso = new javax.swing.JTextArea();
         btnCreditos = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        sResutado = new javax.swing.JScrollPane();
+        JTable = new javax.swing.JTable();
         jlResul = new javax.swing.JLabel();
         jtfRespuesta = new javax.swing.JTextField();
         btnPDF = new javax.swing.JButton();
@@ -108,7 +108,7 @@ public class JDCompilador extends javax.swing.JDialog {
         });
         getContentPane().add(btnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 100));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -125,9 +125,9 @@ public class JDCompilador extends javax.swing.JDialog {
                 "Número", "Token", "Identificador"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        sResutado.setViewportView(JTable);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 420, 190));
+        getContentPane().add(sResutado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 420, 190));
 
         jlResul.setText("Resultado:");
         getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 400, -1, -1));
@@ -279,6 +279,7 @@ public class JDCompilador extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTable JTable;
     private javax.swing.JLabel Titulo;
     public javax.swing.JButton btnAnalizar;
     public javax.swing.JButton btnArchivo;
@@ -287,11 +288,10 @@ public class JDCompilador extends javax.swing.JDialog {
     public javax.swing.JButton btnPDF;
     public javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JTable jTable1;
     public javax.swing.JLabel jlResul;
     public javax.swing.JTextField jtfRespuesta;
+    public javax.swing.JScrollPane sResutado;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JLabel t1;
     private javax.swing.JLabel t2;

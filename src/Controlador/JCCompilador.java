@@ -23,7 +23,7 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 public class JCCompilador implements ActionListener, KeyListener {
-
+    
     JDCompilador c = new JDCompilador(null, true);
     Compilador comp = new Compilador();
     DefaultTableModel modelo = new DefaultTableModel();
@@ -40,7 +40,7 @@ public class JCCompilador implements ActionListener, KeyListener {
         this.c.btnSalir.addActionListener(this);
         this.c.jtfRespuesta.addActionListener(this);
         this.c.jtfRespuesta.setEditable(false);
-        this.c.jTable1.setEnabled(false);
+        this.c.JTable.setEnabled(false);
         ocultar();
         UIManager.put("OptionPane.background", Color.white);
         UIManager.put("Panel.background", Color.white);
@@ -105,7 +105,7 @@ public class JCCompilador implements ActionListener, KeyListener {
         c.btnPDF.setEnabled(true);
     }
 
-    public void resultado() {
+    public void resultado() {        
         String operacion = null, opr = null;
         int por;
         operacion = this.c.txtIngreso.getText();
@@ -163,7 +163,7 @@ public class JCCompilador implements ActionListener, KeyListener {
             modelo.addRow(new Object[]{cont++, numero[contador], identi[contador]});
             contador++;
         }
-        this.c.jTable1.setModel(modelo);
+        this.c.JTable.setModel(modelo);
     }
 
     public void imprimir() {
@@ -174,7 +174,7 @@ public class JCCompilador implements ActionListener, KeyListener {
 
             MessageFormat footer = new MessageFormat("Página{0,number,integer}");
             try {
-                c.jTable1.print(JTable.PrintMode.NORMAL, header1, footer);
+                c.JTable.print(JTable.PrintMode.NORMAL, header1, footer);
             } catch (Exception e) {
                 System.err.format("No se puede Generar", e.getMessage());
             }
