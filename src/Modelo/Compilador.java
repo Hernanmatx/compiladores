@@ -8,14 +8,13 @@ import javax.swing.UIManager;
 
 public class Compilador {
 
-    public int cona;
     ArrayList<Object> num = new ArrayList<>();
     ArrayList<Object> ide = new ArrayList<>();
     Stack<Float> valores = new Stack<>();
     Stack<Character> operadores = new Stack<>();
-    private Stack<Character> stackLetras = new Stack<>();
+    private Stack<Character> letras = new Stack<>();
     boolean balan;
-    int conbalanA, conbalanC, tador, condor, tad;
+    int conbalanA, conbalanC, tador, condor, tad, cona;
     String nombreM;
     float res;
 
@@ -23,31 +22,31 @@ public class Compilador {
         conbalanA = 0;
         conbalanC = 0;
         balan = false;
-        stackLetras.clear();
-        char arrayDeLetras[] = cadena.toCharArray();
+        letras.clear();
+        char arrayLetras[] = cadena.toCharArray();
         int i;
-        for (i = 0; i < arrayDeLetras.length; i++) {
-            if (arrayDeLetras[i] == '(') {
-                stackLetras.push(arrayDeLetras[i]);
-                switch (arrayDeLetras[i]) {
+        for (i = 0; i < arrayLetras.length; i++) {
+            if (arrayLetras[i] == '(') {
+                letras.push(arrayLetras[i]);
+                switch (arrayLetras[i]) {
                     case '(':
                         conbalanA++;
                         break;
                 }
-            } else if (arrayDeLetras[i] == ')') {
-                switch (arrayDeLetras[i]) {
+            } else if (arrayLetras[i] == ')') {
+                switch (arrayLetras[i]) {
                     case ')':
                         conbalanC++;
                         break;
                 }
-                if (!stackLetras.empty() && stackLetras.peek() != ')') {
-                    stackLetras.pop();
+                if (!letras.empty() && letras.peek() != ')') {
+                    letras.pop();
                 } else {
-                    stackLetras.push(arrayDeLetras[i]);
+                    letras.push(arrayLetras[i]);
                 }
             }
         }
-        balan = stackLetras.empty();
+        balan = letras.empty();
         return balan;
     }
 
