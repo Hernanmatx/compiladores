@@ -16,6 +16,7 @@ public class Compilador {
     boolean balan;
     int conbalanA, conbalanC, tador, condor, tad, cona;
     String nombreM;
+    char[] token, tokens;
     float res;
 
     public boolean procesarCadena(String cadena) {
@@ -58,9 +59,9 @@ public class Compilador {
     }
 
     public float evaluacion(String expresion) {
+        tokens = null;
         valores.clear();
         operadores.clear();
-        char[] tokens = null;
         tokens = expresion.toCharArray();
 
         for (int i = 0; i < tokens.length; i++) {
@@ -98,9 +99,9 @@ public class Compilador {
         tador = 0;
         cona = 0;
         tad = 0;
+        token = null;
         valores.clear();
         operadores.clear();
-        char[] token = null;
         token = expresion.toCharArray();
 
         for (int i = 0; i < token.length; i++) {
