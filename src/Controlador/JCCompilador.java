@@ -185,7 +185,6 @@ public class JCCompilador implements ActionListener, KeyListener {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File archivo = new File(chooser.getSelectedFile().getAbsolutePath());
-
         try {
             String ST = new String(Files.readAllBytes(archivo.toPath()));
             c.txtIngreso.setText(ST);
