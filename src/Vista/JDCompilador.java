@@ -7,6 +7,7 @@ package Vista;
 
 import Vista.Tipografia.JCFuente;
 import java.awt.Color;
+import java.awt.Font;
 
 
 /**
@@ -39,6 +40,13 @@ public class JDCompilador extends javax.swing.JDialog {
         t1.setFont(tipo.fuente(tipo.cor, 1, 30));
         jlResul.setFont(tipo.fuente(tipo.cor, 1, 25));
         jtfRespuesta.setFont(tipo.fuente(tipo.cor, 1, 45));
+        
+        JTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        JTable.getTableHeader().setOpaque(false);
+        JTable.getTableHeader().setBackground(new Color(32,136,203));
+        JTable.getTableHeader().setForeground(new Color(255,255,255));
+        JTable.setRowHeight(45);
+        
     }
 
     /**
@@ -108,13 +116,11 @@ public class JDCompilador extends javax.swing.JDialog {
         });
         getContentPane().add(btnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 100));
 
+        JTable.setBackground(new java.awt.Color(255, 255, 255));
+        JTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JTable.setForeground(new java.awt.Color(0, 0, 0));
         JTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -125,12 +131,19 @@ public class JDCompilador extends javax.swing.JDialog {
                 "Número", "Token", "Identificador"
             }
         ));
+        JTable.setFocusable(false);
+        JTable.setGridColor(new java.awt.Color(128, 128, 128));
+        JTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        JTable.setRowHeight(30);
+        JTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        JTable.setShowVerticalLines(false);
+        JTable.getTableHeader().setReorderingAllowed(false);
         sResutado.setViewportView(JTable);
 
-        getContentPane().add(sResutado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 420, 190));
+        getContentPane().add(sResutado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 420, 210));
 
         jlResul.setText("Resultado:");
-        getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 400, -1, -1));
+        getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, -1));
 
         jtfRespuesta.setEditable(false);
         jtfRespuesta.setBackground(new java.awt.Color(255, 255, 255));
