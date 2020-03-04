@@ -23,7 +23,7 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 public class JCCompilador implements ActionListener, KeyListener {
-    
+
     JDCompilador c = new JDCompilador(null, true);
     Compilador comp = new Compilador();
     DefaultTableModel modelo = new DefaultTableModel();
@@ -105,7 +105,7 @@ public class JCCompilador implements ActionListener, KeyListener {
         c.btnPDF.setEnabled(true);
     }
 
-    public void resultado() {        
+    public void resultado() {
         String operacion = null, opr = null;
         int por;
         operacion = this.c.txtIngreso.getText();
@@ -168,7 +168,8 @@ public class JCCompilador implements ActionListener, KeyListener {
 
     public void imprimir() {
         if (c.jtfRespuesta.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Es necesario resolver la operación primero", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Es necesario resolver la operación primero", 
+                    "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } else {
             MessageFormat header1 = new MessageFormat("Operación         Resultado: " + c.jtfRespuesta.getText() + "");
 
@@ -185,6 +186,7 @@ public class JCCompilador implements ActionListener, KeyListener {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File archivo = new File(chooser.getSelectedFile().getAbsolutePath());
+
         try {
             String ST = new String(Files.readAllBytes(archivo.toPath()));
             c.txtIngreso.setText(ST);
