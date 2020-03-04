@@ -10,12 +10,24 @@ import java.io.InputStream;
 public class JCFuente {
 
     private Font font = null;
-    public String ki = "Asia.otf";
-    public String ne = "NixieOne.ttf";
-    public String so = "Sophia.ttf";
-    public String su = "Sunday.ttf";
+    public String as = "Asia.otf";
+    public String be = "Bergie.otf";
+    public String ce = "Celine.ttf";
     public String co = "Compass.ttf";
+    public String cor = "Core.otf";
+    public String ge = "Geometos.ttf";
     public String ho = "Hoam.otf";
+    public String mat = "Mati.otf";
+    public String ne = "NixieOne.ttf";
+    public String op = "OpenMine.ttf";
+    public String pr = "Providence.ttf";
+    public String re = "Rekobip.ttf";
+    public String so = "Sophia.ttf";
+    public String sp = "Spotnik.ttf";
+    public String sr = "SrabiScript.ttf";
+    public String su = "Sunday.ttf";
+    public String tr = "Traveling.ttf";
+    public String ki = "King.ttf";
     
     public Font fuente(String fontName, int estilo, float tamanio) {
         try {

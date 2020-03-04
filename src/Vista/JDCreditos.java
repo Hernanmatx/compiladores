@@ -30,6 +30,7 @@ public class JDCreditos extends javax.swing.JDialog {
         c.setFont(tipo.fuente(tipo.ho, 0, 13));
         d.setFont(tipo.fuente(tipo.ho, 0, 13));
         e.setFont(tipo.fuente(tipo.ho, 0, 13));
+        b.setFont(tipo.fuente(tipo.ho, 0, 13));
     }
 
     /**
@@ -47,6 +48,7 @@ public class JDCreditos extends javax.swing.JDialog {
         c = new javax.swing.JLabel();
         d = new javax.swing.JLabel();
         e = new javax.swing.JLabel();
+        b = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -85,7 +87,12 @@ public class JDCreditos extends javax.swing.JDialog {
         e.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         e.setForeground(new java.awt.Color(0, 0, 0));
         e.setText("Ashley Sarahi López Alvarado                  4490-17-16584");
-        getContentPane().add(e, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 600, 40));
+        getContentPane().add(e, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 600, 40));
+
+        b.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        b.setForeground(new java.awt.Color(0, 0, 0));
+        b.setText("Jorge Mario Mendoza Chay                    4490-15-7580");
+        getContentPane().add(b, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 600, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -138,6 +145,7 @@ public class JDCreditos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
+    private javax.swing.JLabel b;
     public javax.swing.JButton btnCerrar;
     private javax.swing.JLabel c;
     private javax.swing.JLabel d;

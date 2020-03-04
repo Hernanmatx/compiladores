@@ -34,7 +34,11 @@ public class JDCompilador extends javax.swing.JDialog {
         txtIngreso.setForeground(Color.BLACK);*/
         
         tipo = new JCFuente();
-        Titulo.setFont(tipo.fuente(tipo.ki, 0, 70));
+        Titulo.setFont(tipo.fuente(tipo.ki, 0, 77));
+        t2.setFont(tipo.fuente(tipo.cor, 1, 30));//cor pr re
+        t1.setFont(tipo.fuente(tipo.cor, 1, 30));
+        jlResul.setFont(tipo.fuente(tipo.cor, 1, 25));
+        jtfRespuesta.setFont(tipo.fuente(tipo.cor, 1, 45));
     }
 
     /**
@@ -56,12 +60,13 @@ public class JDCompilador extends javax.swing.JDialog {
         jtfRespuesta = new javax.swing.JTextField();
         btnPDF = new javax.swing.JButton();
         Titulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         btnArchivo = new javax.swing.JButton();
         btnAnalizar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
+        t2 = new javax.swing.JLabel();
+        t1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,15 +85,15 @@ public class JDCompilador extends javax.swing.JDialog {
 
         txtIngreso.setBackground(new java.awt.Color(255, 255, 255));
         txtIngreso.setColumns(20);
-        txtIngreso.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtIngreso.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtIngreso.setForeground(new java.awt.Color(0, 0, 0));
-        txtIngreso.setRows(2);
+        txtIngreso.setRows(1);
         txtIngreso.setToolTipText("");
         txtIngreso.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtIngreso.setCaretColor(new java.awt.Color(225, 225, 225));
         scroll.setViewportView(txtIngreso);
 
-        getContentPane().add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 470, 50));
+        getContentPane().add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 410, 60));
 
         btnCreditos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/EquipoP.png"))); // NOI18N
         btnCreditos.setBorder(null);
@@ -122,15 +127,15 @@ public class JDCompilador extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, 420, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 420, 190));
 
         jlResul.setText("Resultado:");
-        getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, -1, -1));
+        getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 400, -1, -1));
 
         jtfRespuesta.setEditable(false);
         jtfRespuesta.setBackground(new java.awt.Color(255, 255, 255));
         jtfRespuesta.setBorder(null);
-        getContentPane().add(jtfRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, 74, -1));
+        getContentPane().add(jtfRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, 100, 50));
 
         btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/pdfP.png"))); // NOI18N
         btnPDF.setBorder(null);
@@ -150,18 +155,14 @@ public class JDCompilador extends javax.swing.JDialog {
         Titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Titulo.setForeground(new java.awt.Color(0, 0, 0));
         Titulo.setText("Compilador");
-        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 310, 80));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Titulo2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 6, 421, 215));
+        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 340, 80));
 
         jSeparator1.setBackground(new java.awt.Color(247, 190, 190));
         jSeparator1.setForeground(new java.awt.Color(247, 190, 190));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 670, 10));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, 420, 10));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setText("Ingrese la Operacion:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Titulo2.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 6, 421, 215));
 
         btnArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/ArchivoP.png"))); // NOI18N
         btnArchivo.setBorder(null);
@@ -187,7 +188,7 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnAnalizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAnalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 280, 110, 100));
+        getContentPane().add(btnAnalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 250, 110, 100));
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/BorrarP.png"))); // NOI18N
         btnBorrar.setBorder(null);
@@ -200,7 +201,13 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnBorrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 280, 110, 100));
+        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 250, 110, 100));
+
+        t2.setText(" Operacion:");
+        getContentPane().add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, -1, -1));
+
+        t1.setText("Ingrese la");
+        getContentPane().add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -280,13 +287,14 @@ public class JDCompilador extends javax.swing.JDialog {
     public javax.swing.JButton btnPDF;
     public javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JTable jTable1;
     public javax.swing.JLabel jlResul;
     public javax.swing.JTextField jtfRespuesta;
     private javax.swing.JScrollPane scroll;
+    private javax.swing.JLabel t1;
+    private javax.swing.JLabel t2;
     public javax.swing.JTextArea txtIngreso;
     // End of variables declaration//GEN-END:variables
 }
