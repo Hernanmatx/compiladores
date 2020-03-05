@@ -109,44 +109,47 @@ public class JCCompilador implements ActionListener, KeyListener {
     }
 
     public void resultado() {
-        String operacion = null, opr = null;
-        int validError;
-        operacion = this.c.txtIngreso.getText();
-        this.comp.asignacionNombre(operacion);
-        this.c.jtfRespuesta.setText("");
-        this.c.txtIngreso.setText(operacion.replaceAll("\n", ""));
-        datos();
-        this.c.btnBorrar.setVisible(true);
-        if (this.comp.balancearP(operacion) == true) {
-            opr = this.comp.respu(operacion);
-            validError = this.comp.getValidError();
-            if (validError == 1) {
-                this.c.jlResul.setVisible(false);
-                this.c.jtfRespuesta.setText("");
-            } else {
-                this.c.jtfRespuesta.setText(opr);
-                mostrar();
-            }
-        } else {
-            coC = (this.comp.getConbalanC() - this.comp.getConbalanA());
-            coA = (this.comp.getConbalanA() - this.comp.getConbalanC());
-            if (this.comp.getConbalanA() > this.comp.getConbalanC()) {
-                if (coA < 2) {
-                    JOptionPane.showMessageDialog(null, "Falta 1 paréntesis de cierre", "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            String operacion = null, opr = null;
+            int validError;
+            operacion = this.c.txtIngreso.getText();
+            this.comp.asignacionNombre(operacion);
+            this.c.jtfRespuesta.setText("");
+            this.c.txtIngreso.setText(operacion.replaceAll("\n", ""));
+            datosTab();
+            this.c.btnBorrar.setVisible(true);
+            if (this.comp.balancearP(operacion) == true) {
+                opr = this.comp.respu(operacion);
+                validError = this.comp.getValidError();
+                if (validError == 1) {
+                    this.c.jlResul.setVisible(false);
+                    this.c.jtfRespuesta.setText("");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Faltan " + coA + " paréntesis de cierre", "Error", JOptionPane.ERROR_MESSAGE);
+                    this.c.jtfRespuesta.setText(opr);
+                    mostrar();
                 }
             } else {
-                if (coC < 2) {
-                    JOptionPane.showMessageDialog(null, "Falta 1 paréntesis de apertura", "Error", JOptionPane.ERROR_MESSAGE);
+                coC = (this.comp.getConbalanC() - this.comp.getConbalanA());
+                coA = (this.comp.getConbalanA() - this.comp.getConbalanC());
+                if (this.comp.getConbalanA() > this.comp.getConbalanC()) {
+                    if (coA < 2) {
+                        JOptionPane.showMessageDialog(null, "Falta 1 paréntesis de cierre", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Faltan " + coA + " paréntesis de cierre", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Faltan " + coC + " paréntesis de aperutra", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (coC < 2) {
+                        JOptionPane.showMessageDialog(null, "Falta 1 paréntesis de apertura", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Faltan " + coC + " paréntesis de aperutra", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
+        } catch (Exception e) {
         }
     }
 
-    public void datos() {
+    public void datosTab() {
         cont = 1;
         this.modelo.setRowCount(0);
         ArrayList<Object> num = new ArrayList<>();

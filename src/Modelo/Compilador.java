@@ -149,8 +149,8 @@ public class Compilador {
                         case ' ':
                             break;
                         default:
-                            JOptionPane.showMessageDialog(null, "Caracter '" + token[i]
-                                    + "' no adminito", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Caracter  ' " + token[i]
+                                    + " '  no admitido", "Error", JOptionPane.ERROR_MESSAGE);
                             validError = 1;
                             break;
                     }
@@ -186,6 +186,7 @@ public class Compilador {
                     case '+':
                         nombreOpr = "Suma";
                         if (i <= tamañoExp && i >= 1) {
+                            validOperador(token, i, posAdelante);
                             setOpr(token, posAtras, posAdelante, nombreOpr);
                             setSuma(i, token);
                         } else if (i == 0) {
@@ -199,6 +200,7 @@ public class Compilador {
                     case '-':
                         nombreOpr = "Resta";
                         if (i <= tamañoExp && i >= 1) {
+                            validOperador(token, i, posAdelante);
                             setOpr(token, posAtras, posAdelante, nombreOpr);
                             setResta(i, token);
                         } else if (i == 0) {
@@ -212,6 +214,7 @@ public class Compilador {
                     case '^':
                         nombreOpr = "Exponente";
                         if (i <= tamañoExp && i >= 1) {
+                            validOperador(token, i, posAdelante);
                             setOpr(token, posAtras, posAdelante, nombreOpr);
                             setExpo(i, token);
                         } else if (i == 0) {
@@ -225,6 +228,7 @@ public class Compilador {
                     case '*':
                         nombreOpr = "Multiplicación";
                         if (i <= tamañoExp && i >= 1) {
+                            validOperador(token, i, posAdelante);
                             setOpr(token, posAtras, posAdelante, nombreOpr);
                             setMulti(i, token);
                         } else if (i == 0) {
@@ -238,6 +242,7 @@ public class Compilador {
                     case '/':
                         nombreOpr = "División";
                         if (i <= tamañoExp && i >= 1) {
+                            validOperador(token, i, posAdelante);
                             setOpr(token, posAtras, posAdelante, nombreOpr);
                             setDiv(i, token);
                         } else if (i == 0) {
@@ -250,7 +255,7 @@ public class Compilador {
                         break;
                 }
             } else if (Character.isLetter(token[i])) {
-                JOptionPane.showMessageDialog(null, "Letra '" + token[i] + "' no permitida", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Letra  ' " + token[i] + " '  no permitida", "Error", JOptionPane.ERROR_MESSAGE);
                 validError = 1;
             } else if (token[i] != '+' || token[i] != '-'
                     || token[i] != '^' || token[i] != '*' || token[i] != '/') {
@@ -271,7 +276,7 @@ public class Compilador {
                         validError = 1;
                         break;
                     default:
-                        JOptionPane.showMessageDialog(null, "Signo '" + token[i] + "' no"
+                        JOptionPane.showMessageDialog(null, "Signo  ' " + token[i] + " '  no"
                                 + " reconocido", "Error", JOptionPane.ERROR_MESSAGE);
                         validError = 1;
                         break;
@@ -323,15 +328,18 @@ public class Compilador {
         return 0;
     }
 
+    public void validOperador(char[] token, int i, int posAdelante) {
+        if (token[posAdelante] == '+' || token[posAdelante] == '-' || token[posAdelante] == '*'
+                || token[posAdelante] == '/' || token[posAdelante] == '^') {
+            JOptionPane.showMessageDialog(null, "Es necesario un número entre un Operador  ' " + token[i] + 
+                    " '  y un Operador  ' " + token[posAdelante] + " '", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     public void validTerminar(int posAtras, int posAdelante, char[] token, String expresion, String nombreOpr) {
         if (posAtras <= expresion.length()) {
             JOptionPane.showMessageDialog(null, "La expresión no puede terminar con "
                     + "un Operador " + nombreOpr, "Error", JOptionPane.ERROR_MESSAGE);
-            validError = 1;
-        }
-        if (token[posAtras] == '+') {
-            JOptionPane.showMessageDialog(null, "Los Operadores " + nombreOpr + " deben estar separados"
-                    + " por un número", "Error", JOptionPane.ERROR_MESSAGE);
             validError = 1;
         }
     }
@@ -425,8 +433,8 @@ public class Compilador {
         }
         switch (token[tad]) {
             case '(':
-                JOptionPane.showMessageDialog(null, "Debe existir un Número entre un Operador " + nombreOpr
-                        + " y un Paréntesis de Apertura", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Debe existir un Número entre un Paréntesis de Apertura "
+                        + " y un Operador " + nombreOpr, "Error", JOptionPane.ERROR_MESSAGE);
                 break;
         }
     }
