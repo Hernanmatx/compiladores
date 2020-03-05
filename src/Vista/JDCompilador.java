@@ -121,20 +121,18 @@ public class JDCompilador extends javax.swing.JDialog {
         JTable.setForeground(new java.awt.Color(0, 0, 0));
         JTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Número", "Token", "Identificador"
             }
         ));
+        JTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JTable.setFocusable(false);
         JTable.setGridColor(new java.awt.Color(128, 128, 128));
         JTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        JTable.setRowHeight(30);
+        JTable.setMinimumSize(new java.awt.Dimension(25, 150));
+        JTable.setRowHeight(20);
         JTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
         JTable.setShowVerticalLines(false);
         JTable.getTableHeader().setReorderingAllowed(false);
@@ -148,7 +146,7 @@ public class JDCompilador extends javax.swing.JDialog {
         jtfRespuesta.setEditable(false);
         jtfRespuesta.setBackground(new java.awt.Color(255, 255, 255));
         jtfRespuesta.setBorder(null);
-        getContentPane().add(jtfRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, 100, 50));
+        getContentPane().add(jtfRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, 250, 50));
 
         btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/pdfP.png"))); // NOI18N
         btnPDF.setBorder(null);

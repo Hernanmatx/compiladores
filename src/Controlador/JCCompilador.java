@@ -20,6 +20,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class JCCompilador implements ActionListener, KeyListener {
@@ -28,6 +29,8 @@ public class JCCompilador implements ActionListener, KeyListener {
     Compilador comp = new Compilador();
     DefaultTableModel modelo = new DefaultTableModel();
     private int contador = 0, cont = 1, coA = 0, coC = 0;
+    DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
+    JTable table = new JTable(modelo);
 
     public JCCompilador(JDCompilador compilador) {
         this.c = compilador;
@@ -168,7 +171,7 @@ public class JCCompilador implements ActionListener, KeyListener {
 
     public void imprimir() {
         if (c.jtfRespuesta.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Es necesario resolver la operación primero", 
+            JOptionPane.showMessageDialog(null, "Es necesario resolver la operación primero",
                     "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } else {
             MessageFormat header1 = new MessageFormat("Operación         Resultado: " + c.jtfRespuesta.getText() + "");

@@ -115,14 +115,47 @@ public class Compilador {
                 while (i < token.length && token[i] >= '0' && token[i] <= '9') {
                     sbuff.append(token[i++]);
                 }
-                while (i < token.length && token[i] == '+') {
-                    JOptionPane.showMessageDialog(null, "Ingrese expresión separada "
-                            + "por espacios", "Error", JOptionPane.ERROR_MESSAGE);
-                    validError = 1;
-                    setSuma(i, token);
+                setNumero(i, sbuff);
+                while (i < token.length) {
+                    switch (token[i]) {
+                        case '+':
+                            setValidEspacio();
+                            setSuma(i, token);
+                            break;
+                        case '-':
+                            setValidEspacio();
+                            setResta(i, token);
+                            break;
+                        case '^':
+                            setValidEspacio();
+                            setExpo(i, token);
+                            break;
+                        case '*':
+                            setValidEspacio();
+                            setMulti(i, token);
+                            break;
+                        case '/':
+                            setValidEspacio();
+                            setDiv(i, token);
+                            break;
+                        case '(':
+                            setValidEspacio();
+                            setParAper(i, token);
+                            break;
+                        case ')':
+                            setValidEspacio();
+                            setParCier(i, token);
+                            break;
+                        case ' ':
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null, "Caracter '" + token[i]
+                                    + "' no adminito", "Error", JOptionPane.ERROR_MESSAGE);
+                            validError = 1;
+                            break;
+                    }
                     break;
                 }
-                setNumero(i, sbuff);
             } else if (token[i] == '(') {
                 posAtras = (i - 2);
                 if (i >= 2) {
@@ -218,6 +251,7 @@ public class Compilador {
                 }
             } else if (Character.isLetter(token[i])) {
                 JOptionPane.showMessageDialog(null, "Letra '" + token[i] + "' no permitida", "Error", JOptionPane.ERROR_MESSAGE);
+                validError = 1;
             } else if (token[i] != '+' || token[i] != '-'
                     || token[i] != '^' || token[i] != '*' || token[i] != '/') {
                 switch (token[i]) {
@@ -326,6 +360,12 @@ public class Compilador {
 
     public int getConbalanC() {
         return conbalanC;
+    }
+
+    public void setValidEspacio() {
+        JOptionPane.showMessageDialog(null, "Ingrese expresión separada "
+                + "por espacios", "Error", JOptionPane.ERROR_MESSAGE);
+        validError = 1;
     }
 
     public void setNumero(int i, StringBuffer sbuff) {
