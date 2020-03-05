@@ -177,7 +177,7 @@ public class JCCompilador implements ActionListener, KeyListener {
             JOptionPane.showMessageDialog(null, "Es necesario resolver la operación primero",
                     "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            MessageFormat header1 = new MessageFormat("Operación         Resultado: " + c.jtfRespuesta.getText() + "");
+            MessageFormat header1 = new MessageFormat("Operación: " + c.txtIngreso.getText() +"  Resultado: " + c.jtfRespuesta.getText() + "");
 
             MessageFormat footer = new MessageFormat("Página{0,number,integer}");
             try {

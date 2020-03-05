@@ -114,7 +114,7 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnCreditosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 100));
+        getContentPane().add(btnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, 110, 100));
 
         JTable.setBackground(new java.awt.Color(255, 255, 255));
         JTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -138,7 +138,7 @@ public class JDCompilador extends javax.swing.JDialog {
         JTable.getTableHeader().setReorderingAllowed(false);
         sResutado.setViewportView(JTable);
 
-        getContentPane().add(sResutado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 420, 210));
+        getContentPane().add(sResutado, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 460, -1, 210));
 
         jlResul.setText("Resultado:");
         getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, -1));
@@ -160,7 +160,7 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnPDFActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 110, 100));
+        getContentPane().add(btnPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, -20, 110, 100));
 
         Titulo.setBackground(new java.awt.Color(255, 255, 255));
         Titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -186,7 +186,7 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnArchivoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 110, 100));
+        getContentPane().add(btnArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, -20, 110, 100));
 
         btnAnalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/AnalizadorP.png"))); // NOI18N
         btnAnalizar.setBorder(null);
