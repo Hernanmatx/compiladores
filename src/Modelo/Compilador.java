@@ -14,12 +14,12 @@ public class Compilador {
     Stack<Character> operadores = new Stack<>();
     private Stack<Character> letras = new Stack<>();
     boolean balan;
-    int conbalanA, conbalanC, tador, condor, tad, cona;
-    String nombreM;
+    int conbalanA, conbalanC, posAdelante, tamañoExp, posAtras, validError, posAtrasPA, posAtrasA;
+    String nombreOpr;
     char[] token, tokens;
     float res;
 
-    public boolean procesarCadena(String cadena) {
+    public boolean balancearP(String cadena) {
         conbalanA = 0;
         conbalanC = 0;
         balan = false;
@@ -54,11 +54,11 @@ public class Compilador {
     public String respu(String operacion) {
         UIManager.put("OptionPane.background", Color.white);
         UIManager.put("Panel.background", Color.white);
-        res = evaluacion(operacion);
+        res = ejecucion(operacion);
         return Float.toString(res);
     }
 
-    public float evaluacion(String expresion) {
+    public float ejecucion(String expresion) {
         tokens = null;
         valores.clear();
         operadores.clear();
@@ -83,7 +83,7 @@ public class Compilador {
                 operadores.pop();
             } else if (tokens[i] == '+' || tokens[i] == '-'
                     || tokens[i] == '^' || tokens[i] == '*' || tokens[i] == '/') {
-                while (!operadores.empty() && precedencia(tokens[i], operadores.peek())) {
+                while (!operadores.empty() && importancia(tokens[i], operadores.peek())) {
                     valores.push(aplicarOperaciones(operadores.pop(), valores.pop(), valores.pop()));
                 }
                 operadores.push(tokens[i]);
@@ -96,9 +96,11 @@ public class Compilador {
     }
 
     public float asignacionNombre(String expresion) {
-        tador = 0;
-        cona = 0;
-        tad = 0;
+        posAdelante = 0;
+        validError = 0;
+        posAtrasPA = 0;
+        posAtrasA = 0;
+        posAtras = 0;
         token = null;
         valores.clear();
         operadores.clear();
@@ -113,137 +115,131 @@ public class Compilador {
                 while (i < token.length && token[i] >= '0' && token[i] <= '9') {
                     sbuff.append(token[i++]);
                 }
+                while (i < token.length && token[i] == '+') {
+                    JOptionPane.showMessageDialog(null, "Ingrese expresión separada "
+                            + "por espacios", "Error", JOptionPane.ERROR_MESSAGE);
+                    validError = 1;
+                    setSuma(i, token);
+                    break;
+                }
                 setNumero(i, sbuff);
             } else if (token[i] == '(') {
-                tador = (i - 2);
-                tad = (tador - 2);
+                posAtras = (i - 2);
                 if (i >= 2) {
-                    if (token[tador] >= '0' && token[tador] <= '9') {
+                    if (token[posAtras] >= '0' && token[posAtras] <= '9') {
                         JOptionPane.showMessageDialog(null, "Debe existir un Operador entre un Número "
                                 + "y un Paréntesis de Apertura", "Error", JOptionPane.ERROR_MESSAGE);
-                        cona = 1;
-                    }
-                    if (token[tador] == '+' || token[tador] == '-' || token[tador] == '^'
-                            || token[tador] == '*' || token[tador] == '/') {
-                        if (tador <= expresion.length() && (token[tad] >= '0' && token[tad] <= '9')) {
-                        } else {
-                            //valInicio(tador, tad, token, expresion);
-                        }//+ ( 4
+                        validError = 1;
                     }
                 }
                 setParAper(i, token);
             } else if (token[i] == ')') {
-                condor = (expresion.length() - 2);
-                tador = (i + 2);
-                tad = (tador + 2);
-                if (i <= condor) {
-                    if (token[tador] >= '0' && token[tador] <= '9') {
+                tamañoExp = (expresion.length() - 2);
+                posAdelante = (i + 2);
+                if (i <= tamañoExp) {
+                    if (token[posAdelante] >= '0' && token[posAdelante] <= '9') {
                         JOptionPane.showMessageDialog(null, "Debe existir un Operador entre un Número "
                                 + "y un Paréntesis de Cierre", "Error", JOptionPane.ERROR_MESSAGE);
-                        cona = 1;
-                    }
-                    if (token[tador] == '+' || token[tador] == '-' || token[tador] == '^'
-                            || token[tador] == '*' || token[tador] == '/') {
-                        switch (token[tador]) {
-                            case '+':
-                                nombreM = "Suma";
-                                valTerminar(tad, token, expresion, nombreM);
-                                break;
-                            case '-':
-                                nombreM = "Resta";
-                                valTerminar(tad, token, expresion, nombreM);
-                                break;
-                            case '^':
-                                nombreM = "Exponente";
-                                valTerminar(tad, token, expresion, nombreM);
-                                break;
-                            case '*':
-                                nombreM = "Multiplicación";
-                                valTerminar(tad, token, expresion, nombreM);
-                                break;
-                            case '/':
-                                nombreM = "División";
-                                valTerminar(tad, token, expresion, nombreM);
-                                break;
-                        }
+                        validError = 1;
                     }
                 }
                 setParCier(i, token);
             } else if (token[i] == '+' || token[i] == '-'
                     || token[i] == '^' || token[i] == '*' || token[i] == '/') {
-                condor = (expresion.length() - 2);
-                tador = (i + 2);
-                tad = (tador - 4);
+                tamañoExp = (expresion.length() - 2);
+                posAdelante = (i + 2);
+                posAtras = (i - 2);
                 switch (token[i]) {
                     case '+':
-                        nombreM = "Suma";
-                        if (i <= condor) {
-                            setOpr(token, tad, tador, nombreM);
+                        nombreOpr = "Suma";
+                        if (i <= tamañoExp && i >= 1) {
+                            setOpr(token, posAtras, posAdelante, nombreOpr);
                             setSuma(i, token);
+                        } else if (i == 0) {
+                            validInicio(nombreOpr);
+                            setResta(i, token);
                         } else {
+                            validTerminar(posAtras, posAdelante, token, expresion, nombreOpr);
                             setSuma(i, token);
                         }
                         break;
                     case '-':
-                        nombreM = "Resta";
-                        if (i <= condor) {
-                            setOpr(token, tad, tador, nombreM);
+                        nombreOpr = "Resta";
+                        if (i <= tamañoExp && i >= 1) {
+                            setOpr(token, posAtras, posAdelante, nombreOpr);
+                            setResta(i, token);
+                        } else if (i == 0) {
+                            validInicio(nombreOpr);
                             setResta(i, token);
                         } else {
+                            validTerminar(posAtras, posAdelante, token, expresion, nombreOpr);
                             setResta(i, token);
                         }
                         break;
                     case '^':
-                        nombreM = "Exponente";
-                        if (i <= condor) {
-                            setOpr(token, tad, tador, nombreM);
+                        nombreOpr = "Exponente";
+                        if (i <= tamañoExp && i >= 1) {
+                            setOpr(token, posAtras, posAdelante, nombreOpr);
                             setExpo(i, token);
+                        } else if (i == 0) {
+                            validInicio(nombreOpr);
+                            setResta(i, token);
                         } else {
+                            validTerminar(posAtras, posAdelante, token, expresion, nombreOpr);
                             setExpo(i, token);
                         }
                         break;
                     case '*':
-                        nombreM = "Multiplicación";
-                        if (i <= condor) {
-                            setOpr(token, tad, tador, nombreM);
+                        nombreOpr = "Multiplicación";
+                        if (i <= tamañoExp && i >= 1) {
+                            setOpr(token, posAtras, posAdelante, nombreOpr);
                             setMulti(i, token);
+                        } else if (i == 0) {
+                            validInicio(nombreOpr);
+                            setResta(i, token);
                         } else {
+                            validTerminar(posAtras, posAdelante, token, expresion, nombreOpr);
                             setMulti(i, token);
                         }
                         break;
                     case '/':
-                        nombreM = "División";
-                        if (i <= condor) {
-                            setOpr(token, tad, tador, nombreM);
+                        nombreOpr = "División";
+                        if (i <= tamañoExp && i >= 1) {
+                            setOpr(token, posAtras, posAdelante, nombreOpr);
                             setDiv(i, token);
+                        } else if (i == 0) {
+                            validInicio(nombreOpr);
+                            setResta(i, token);
                         } else {
+                            validTerminar(posAtras, posAdelante, token, expresion, nombreOpr);
                             setDiv(i, token);
                         }
                         break;
                 }
             } else if (Character.isLetter(token[i])) {
-                JOptionPane.showMessageDialog(null, "No se permiten letras", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Letra '" + token[i] + "' no permitida", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (token[i] != '+' || token[i] != '-'
                     || token[i] != '^' || token[i] != '*' || token[i] != '/') {
                 switch (token[i]) {
                     case '[':
                     case ']':
                         JOptionPane.showMessageDialog(null, "No se permiten corchetes", "Error", JOptionPane.ERROR_MESSAGE);
-                        cona = 1;
+                        validError = 1;
                         break;
                     case '{':
                     case '}':
                         JOptionPane.showMessageDialog(null, "No se permiten llaves", "Error", JOptionPane.ERROR_MESSAGE);
-                        cona = 1;
+                        validError = 1;
                         break;
                     case '\n':
                         JOptionPane.showMessageDialog(null, "No se permite más de un "
                                 + "salto de linea", "Error", JOptionPane.ERROR_MESSAGE);
-                        cona = 1;
+                        validError = 1;
                         break;
                     default:
-                        JOptionPane.showMessageDialog(null, "Signo no reconocido", "Error", JOptionPane.ERROR_MESSAGE);
-                        cona = 1;
+                        JOptionPane.showMessageDialog(null, "Signo '" + token[i] + "' no"
+                                + " reconocido", "Error", JOptionPane.ERROR_MESSAGE);
+                        validError = 1;
                         break;
                 }
             }
@@ -251,7 +247,7 @@ public class Compilador {
         return valores.pop();
     }
 
-    public static boolean precedencia(char op1, char op2) {
+    public static boolean importancia(char op1, char op2) {
         if (op2 == '(' || op2 == ')') {
             return false;
         }
@@ -286,58 +282,32 @@ public class Compilador {
                 if (b == 0) {
                     JOptionPane.showMessageDialog(null, "No se puede dividir dentro "
                             + "de cero", "Error", JOptionPane.ERROR_MESSAGE);
-                    cona = 1;
+                    validError = 1;
                 }
                 return a / b;
         }
         return 0;
     }
 
-    public void valTerminar(int tad, char[] token, String expresion, String nombreM) {
-        if (tad <= (expresion.length()) && token[tad] >= '0' && token[tad] <= '9') {
-        } else {
+    public void validTerminar(int posAtras, int posAdelante, char[] token, String expresion, String nombreOpr) {
+        if (posAtras <= expresion.length()) {
             JOptionPane.showMessageDialog(null, "La expresión no puede terminar con "
-                    + "un Operador " + nombreM, "Error", JOptionPane.ERROR_MESSAGE);
-            cona = 1;
+                    + "un Operador " + nombreOpr, "Error", JOptionPane.ERROR_MESSAGE);
+            validError = 1;
+        }
+        if (token[posAtras] == '+') {
+            JOptionPane.showMessageDialog(null, "Los Operadores " + nombreOpr + " deben estar separados"
+                    + " por un número", "Error", JOptionPane.ERROR_MESSAGE);
+            validError = 1;
         }
     }
 
-    /*
-    public void valInicio(int tador, int tad, char[] token, String expresion) { //MEJORAR
-        if (token.length <= (expresion.length()) && token[tador] == '+' || token[tador] == '*'
-                || token[tador] == '-' || token[tador] == '/' || token[tador] == '^') {
-            if (tad <= (expresion.length()) && token[tad] >= '0' && token[tad] <= '9') {
-            } else {
-                switch (token[tador]) {
-                    case '+':
-                        JOptionPane.showMessageDialog(null, "La expresión no puede iniciar con "
-                                + "un operador suma", "Error", JOptionPane.ERROR_MESSAGE);
-                        cona = 1;
-                        break;
-                    case '-':
-                        JOptionPane.showMessageDialog(null, "La expresión no puede iniciar con "
-                                + "un operador resta", "Error", JOptionPane.ERROR_MESSAGE);
-                        cona = 1;
-                        break;
-                    case '/':
-                        JOptionPane.showMessageDialog(null, "La expresión no puede iniciar con "
-                                + "un operador división", "Error", JOptionPane.ERROR_MESSAGE);
-                        cona = 1;
-                        break;
-                    case '*':
-                        JOptionPane.showMessageDialog(null, "La expresión no puede iniciar con "
-                                + "un Operador Multiplicación", "Error", JOptionPane.ERROR_MESSAGE);
-                        cona = 1;
-                        break;
-                    case '^':
-                        JOptionPane.showMessageDialog(null, "La expresión no puede iniciar con "
-                                + "un Operador Exponente", "Error", JOptionPane.ERROR_MESSAGE);
-                        cona = 1;
-                        break;
-                }
-            }
-        }
-    }*/
+    public void validInicio(String nombreOpr) {
+        JOptionPane.showMessageDialog(null, "La expresión no puede iniciar con "
+                + "un Operador " + nombreOpr, "Error", JOptionPane.ERROR_MESSAGE);
+        validError = 1;
+    }
+
     public Object getNum() {
         return num;
     }
@@ -346,8 +316,8 @@ public class Compilador {
         return ide;
     }
 
-    public int getCona() {
-        return cona;
+    public int getValidError() {
+        return validError;
     }
 
     public int getConbalanA() {

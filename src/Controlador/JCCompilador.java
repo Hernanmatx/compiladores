@@ -40,7 +40,7 @@ public class JCCompilador implements ActionListener, KeyListener {
         this.c.btnSalir.addActionListener(this);
         this.c.jtfRespuesta.addActionListener(this);
         this.c.jtfRespuesta.setEditable(false);
-        this.c.JTable.setEnabled(false);
+        //this.c.JTable.setEnabled(false);
         ocultar();
         UIManager.put("OptionPane.background", Color.white);
         UIManager.put("Panel.background", Color.white);
@@ -107,17 +107,17 @@ public class JCCompilador implements ActionListener, KeyListener {
 
     public void resultado() {
         String operacion = null, opr = null;
-        int por;
+        int validError;
         operacion = this.c.txtIngreso.getText();
         this.comp.asignacionNombre(operacion);
         this.c.jtfRespuesta.setText("");
         this.c.txtIngreso.setText(operacion.replaceAll("\n", ""));
         datos();
         this.c.btnBorrar.setVisible(true);
-        if (this.comp.procesarCadena(operacion) == true) {
+        if (this.comp.balancearP(operacion) == true) {
             opr = this.comp.respu(operacion);
-            por = this.comp.getCona();
-            if (por == 1) {
+            validError = this.comp.getValidError();
+            if (validError == 1) {
                 this.c.jlResul.setVisible(false);
                 this.c.jtfRespuesta.setText("");
             } else {
