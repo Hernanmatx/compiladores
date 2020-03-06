@@ -8,6 +8,11 @@ package Vista;
 import Vista.Tipografia.JCFuente;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 
 
 /**
@@ -38,8 +43,8 @@ public class JDCompilador extends javax.swing.JDialog {
         Titulo.setFont(tipo.fuente(tipo.ki, 0, 77));
         t2.setFont(tipo.fuente(tipo.cor, 1, 30));//cor pr re
         t1.setFont(tipo.fuente(tipo.cor, 1, 30));
-        jlResul.setFont(tipo.fuente(tipo.cor, 1, 25));
-        jtfRespuesta.setFont(tipo.fuente(tipo.cor, 1, 45));
+        //jlResul.setFont(tipo.fuente(tipo.cor, 1, 25));
+        //jtfRespuesta.setFont(tipo.fuente(tipo.cor, 1, 45));
         
         JTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         JTable.getTableHeader().setOpaque(false);
@@ -47,8 +52,25 @@ public class JDCompilador extends javax.swing.JDialog {
         JTable.getTableHeader().setForeground(new Color(255,255,255));
         JTable.setRowHeight(45);
         
+        
     }
-
+    
+    class JPanelGradient extends JPanel{
+        protected void paintComponent(Graphics g){
+            Graphics2D g2d = (Graphics2D) g;
+            int width = getWidth();
+            int heigth = getHeight();
+            
+            //Color color1 = new Color(52,143,80);
+            Color color1 = new Color(255,255,255);
+            //Color color2 = new Color(86,180,211);
+            Color color2 = new Color(255,255,255);
+            GradientPaint gp = new GradientPaint (0,0, color1,180,heigth,color2);
+            g2d.setPaint(gp);
+            g2d.fillRect(0, 0, width, heigth);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +80,8 @@ public class JDCompilador extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        correcto = new javax.swing.JLabel();
+        error = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         scroll = new javax.swing.JScrollPane();
         txtIngreso = new javax.swing.JTextArea();
@@ -76,7 +100,12 @@ public class JDCompilador extends javax.swing.JDialog {
         t2 = new javax.swing.JLabel();
         t1 = new javax.swing.JLabel();
 
+        correcto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/correcto.png"))); // NOI18N
+
+        error.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/error.png"))); // NOI18N
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Salir.png"))); // NOI18N
@@ -89,7 +118,7 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1144, 572, 150, 130));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 650, 150, 130));
 
         txtIngreso.setBackground(new java.awt.Color(255, 255, 255));
         txtIngreso.setColumns(20);
@@ -101,7 +130,7 @@ public class JDCompilador extends javax.swing.JDialog {
         txtIngreso.setCaretColor(new java.awt.Color(225, 225, 225));
         scroll.setViewportView(txtIngreso);
 
-        getContentPane().add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 410, 60));
+        getContentPane().add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 410, 60));
 
         btnCreditos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/EquipoP.png"))); // NOI18N
         btnCreditos.setBorder(null);
@@ -128,7 +157,6 @@ public class JDCompilador extends javax.swing.JDialog {
             }
         ));
         JTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        JTable.setFocusable(false);
         JTable.setGridColor(new java.awt.Color(128, 128, 128));
         JTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
         JTable.setMinimumSize(new java.awt.Dimension(25, 150));
@@ -138,15 +166,17 @@ public class JDCompilador extends javax.swing.JDialog {
         JTable.getTableHeader().setReorderingAllowed(false);
         sResutado.setViewportView(JTable);
 
-        getContentPane().add(sResutado, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 460, -1, 210));
+        getContentPane().add(sResutado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, -1, 260));
 
+        jlResul.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jlResul.setText("Resultado:");
-        getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, -1));
+        getContentPane().add(jlResul, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 400, -1, -1));
 
         jtfRespuesta.setEditable(false);
         jtfRespuesta.setBackground(new java.awt.Color(255, 255, 255));
+        jtfRespuesta.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jtfRespuesta.setBorder(null);
-        getContentPane().add(jtfRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, 250, 50));
+        getContentPane().add(jtfRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 390, 250, 50));
 
         btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/pdfP.png"))); // NOI18N
         btnPDF.setBorder(null);
@@ -166,14 +196,14 @@ public class JDCompilador extends javax.swing.JDialog {
         Titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Titulo.setForeground(new java.awt.Color(0, 0, 0));
         Titulo.setText("Compilador");
-        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 340, 80));
+        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 340, 80));
 
         jSeparator1.setBackground(new java.awt.Color(247, 190, 190));
         jSeparator1.setForeground(new java.awt.Color(247, 190, 190));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, 420, 10));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, 420, 10));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Titulo2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 6, 421, 215));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 421, 215));
 
         btnArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/ArchivoP.png"))); // NOI18N
         btnArchivo.setBorder(null);
@@ -199,7 +229,7 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnAnalizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAnalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 250, 110, 100));
+        getContentPane().add(btnAnalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 280, 110, 100));
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/BorrarP.png"))); // NOI18N
         btnBorrar.setBorder(null);
@@ -212,15 +242,15 @@ public class JDCompilador extends javax.swing.JDialog {
                 btnBorrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 250, 110, 100));
+        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 280, 110, 100));
 
         t2.setText(" Operacion:");
-        getContentPane().add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, -1, -1));
+        getContentPane().add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, -1, -1));
 
         t1.setText("Ingrese la");
-        getContentPane().add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, -1, -1));
+        getContentPane().add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, -1, -1));
 
-        pack();
+        setBounds(0, 0, 1315, 786);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -298,6 +328,8 @@ public class JDCompilador extends javax.swing.JDialog {
     public javax.swing.JButton btnCreditos;
     public javax.swing.JButton btnPDF;
     public javax.swing.JButton btnSalir;
+    private javax.swing.JLabel correcto;
+    private javax.swing.JLabel error;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JLabel jlResul;
