@@ -151,7 +151,7 @@ public class Compilador {
                         default:
                             JOptionPane.showMessageDialog(null, "Caracter  ' " + token[i]
                                     + " '  no admitido", "Error", JOptionPane.ERROR_MESSAGE);
-                            validError = 1;
+                            setValidError();
                             break;
                     }
                     break;
@@ -162,7 +162,7 @@ public class Compilador {
                     if (token[posAtras] >= '0' && token[posAtras] <= '9') {
                         JOptionPane.showMessageDialog(null, "Debe existir un Operador entre un Número "
                                 + "y un Paréntesis de Apertura", "Error", JOptionPane.ERROR_MESSAGE);
-                        validError = 1;
+                        setValidError();
                     }
                 }
                 setParAper(i, token);
@@ -173,7 +173,7 @@ public class Compilador {
                     if (token[posAdelante] >= '0' && token[posAdelante] <= '9') {
                         JOptionPane.showMessageDialog(null, "Debe existir un Operador entre un Número "
                                 + "y un Paréntesis de Cierre", "Error", JOptionPane.ERROR_MESSAGE);
-                        validError = 1;
+                        setValidError();
                     }
                 }
                 setParCier(i, token);
@@ -256,29 +256,29 @@ public class Compilador {
                 }
             } else if (Character.isLetter(token[i])) {
                 JOptionPane.showMessageDialog(null, "Letra  ' " + token[i] + " '  no permitida", "Error", JOptionPane.ERROR_MESSAGE);
-                validError = 1;
+                setValidError();
             } else if (token[i] != '+' || token[i] != '-'
                     || token[i] != '^' || token[i] != '*' || token[i] != '/') {
                 switch (token[i]) {
                     case '[':
                     case ']':
                         JOptionPane.showMessageDialog(null, "No se permiten corchetes", "Error", JOptionPane.ERROR_MESSAGE);
-                        validError = 1;
+                        setValidError();
                         break;
                     case '{':
                     case '}':
                         JOptionPane.showMessageDialog(null, "No se permiten llaves", "Error", JOptionPane.ERROR_MESSAGE);
-                        validError = 1;
+                        setValidError();
                         break;
                     case '\n':
                         JOptionPane.showMessageDialog(null, "No se permite más de un "
                                 + "salto de linea", "Error", JOptionPane.ERROR_MESSAGE);
-                        validError = 1;
+                        setValidError();
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Signo  ' " + token[i] + " '  no"
                                 + " reconocido", "Error", JOptionPane.ERROR_MESSAGE);
-                        validError = 1;
+                        setValidError();
                         break;
                 }
             }
@@ -321,7 +321,7 @@ public class Compilador {
                 if (b == 0) {
                     JOptionPane.showMessageDialog(null, "No se puede dividir dentro "
                             + "de cero", "Error", JOptionPane.ERROR_MESSAGE);
-                    validError = 1;
+                    setValidError();
                 }
                 return a / b;
         }
@@ -331,8 +331,8 @@ public class Compilador {
     public void validOperador(char[] token, int i, int posAdelante) {
         if (token[posAdelante] == '+' || token[posAdelante] == '-' || token[posAdelante] == '*'
                 || token[posAdelante] == '/' || token[posAdelante] == '^') {
-            JOptionPane.showMessageDialog(null, "Es necesario un número entre un Operador  ' " + token[i] + 
-                    " '  y un Operador  ' " + token[posAdelante] + " '", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Es necesario un número entre un Operador  ' " + token[i]
+                    + " '  y un Operador  ' " + token[posAdelante] + " '", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -340,14 +340,14 @@ public class Compilador {
         if (posAtras <= expresion.length()) {
             JOptionPane.showMessageDialog(null, "La expresión no puede terminar con "
                     + "un Operador " + nombreOpr, "Error", JOptionPane.ERROR_MESSAGE);
-            validError = 1;
+            setValidError();
         }
     }
 
     public void validInicio(String nombreOpr) {
         JOptionPane.showMessageDialog(null, "La expresión no puede iniciar con "
                 + "un Operador " + nombreOpr, "Error", JOptionPane.ERROR_MESSAGE);
-        validError = 1;
+        setValidError();
     }
 
     public Object getNum() {
@@ -369,11 +369,15 @@ public class Compilador {
     public int getConbalanC() {
         return conbalanC;
     }
+    
+    public void setValidError() {
+        validError = 1;
+    }
 
     public void setValidEspacio() {
         JOptionPane.showMessageDialog(null, "Ingrese expresión separada "
                 + "por espacios", "Error", JOptionPane.ERROR_MESSAGE);
-        validError = 1;
+        setValidError();
     }
 
     public void setNumero(int i, StringBuffer sbuff) {
@@ -424,14 +428,14 @@ public class Compilador {
         ide.add("Operador División");
     }
 
-    public void setOpr(char[] token, int tad, int tador, String nombreOpr) {
-        switch (token[tador]) {
+    public void setOpr(char[] token, int posAtras, int posAdelante, String nombreOpr) {
+        switch (token[posAdelante]) {
             case ')':
                 JOptionPane.showMessageDialog(null, "Debe existir un Número entre un Operador " + nombreOpr
                         + " y un Paréntesis de Cierre", "Error", JOptionPane.ERROR_MESSAGE);
                 break;
         }
-        switch (token[tad]) {
+        switch (token[posAtras]) {
             case '(':
                 JOptionPane.showMessageDialog(null, "Debe existir un Número entre un Paréntesis de Apertura "
                         + " y un Operador " + nombreOpr, "Error", JOptionPane.ERROR_MESSAGE);
