@@ -14,7 +14,7 @@ public class Compilador {
     Stack<Character> operadores = new Stack<>();
     private Stack<Character> letras = new Stack<>();
     boolean balan;
-    int conbalanA, conbalanC, posAdelante, tamañoExp, posAtras, validError, posAtrasPA, posAtrasA;
+    int conbalanA, conbalanC, posAdelante, tamañoExp, posAtras, validError, conNum;
     String nombreOpr;
     char[] token, tokens;
     float res;
@@ -73,6 +73,12 @@ public class Compilador {
                 while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9') {
                     sbuf.append(tokens[i++]);
                 }
+                while (i < token.length && token[i] == '.') {
+                    sbuf.append(token[i++]);
+                    while (i < token.length && token[i] >= '0' && token[i] <= '9') {
+                        sbuf.append(token[i++]);
+                    }
+                }
                 valores.push(Float.parseFloat(sbuf.toString()));
             } else if (tokens[i] == '(') {
                 operadores.push(tokens[i]);
@@ -98,8 +104,6 @@ public class Compilador {
     public float asignacionNombre(String expresion) {
         posAdelante = 0;
         validError = 0;
-        posAtrasPA = 0;
-        posAtrasA = 0;
         posAtras = 0;
         token = null;
         valores.clear();
@@ -114,8 +118,20 @@ public class Compilador {
                 StringBuffer sbuff = new StringBuffer();
                 while (i < token.length && token[i] >= '0' && token[i] <= '9') {
                     sbuff.append(token[i++]);
+                    conNum = 1;
                 }
-                setNumero(i, sbuff);
+                while (i < token.length && token[i] == '.') {
+                    sbuff.append(token[i++]);
+                    while (i < token.length && token[i] >= '0' && token[i] <= '9') {
+                        sbuff.append(token[i++]);
+                    }
+                    conNum = 0;
+                }
+                if (conNum == 1) {
+                    setNumEntero(i, sbuff);
+                } else {
+                    setNumDecimal(i, sbuff);
+                }
                 while (i < token.length) {
                     switch (token[i]) {
                         case '+':
@@ -369,7 +385,7 @@ public class Compilador {
     public int getConbalanC() {
         return conbalanC;
     }
-    
+
     public void setValidError() {
         validError = 1;
     }
@@ -380,9 +396,15 @@ public class Compilador {
         setValidError();
     }
 
-    public void setNumero(int i, StringBuffer sbuff) {
+    public void setNumEntero(int i, StringBuffer sbuff) {
         num.add(sbuff);
-        ide.add("Número");
+        ide.add("Número Entero");
+        valores.push(Float.parseFloat(sbuff.toString()));
+    }
+
+    public void setNumDecimal(int i, StringBuffer sbuff) {
+        num.add(sbuff);
+        ide.add("Número Decimal");
         valores.push(Float.parseFloat(sbuff.toString()));
     }
 
