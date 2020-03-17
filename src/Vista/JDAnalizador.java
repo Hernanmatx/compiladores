@@ -19,14 +19,14 @@ import javax.swing.JTable;
  *
  * @author frans
  */
-public class JDCompilador extends javax.swing.JDialog {
+public class JDAnalizador extends javax.swing.JDialog {
 
     /**
      * Creates new form Compilador
      */
     JCFuente tipo;
     
-    public JDCompilador(java.awt.Frame parent, boolean modal) {
+    public JDAnalizador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
@@ -195,8 +195,8 @@ public class JDCompilador extends javax.swing.JDialog {
         Titulo.setBackground(new java.awt.Color(255, 255, 255));
         Titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Titulo.setForeground(new java.awt.Color(0, 0, 0));
-        Titulo.setText("Compilador");
-        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 340, 80));
+        Titulo.setText("Analizador");
+        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 340, 80));
 
         jSeparator1.setBackground(new java.awt.Color(247, 190, 190));
         jSeparator1.setForeground(new java.awt.Color(247, 190, 190));
@@ -293,21 +293,23 @@ public class JDCompilador extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDCompilador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDAnalizador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDCompilador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDAnalizador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDCompilador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDAnalizador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDCompilador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDAnalizador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDCompilador dialog = new JDCompilador(new javax.swing.JFrame(), true);
+                JDAnalizador dialog = new JDAnalizador(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

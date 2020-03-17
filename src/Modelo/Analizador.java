@@ -6,7 +6,7 @@ import java.util.Stack;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-public class Compilador {
+public class Analizador {
 
     ArrayList<Object> num = new ArrayList<>();
     ArrayList<Object> ide = new ArrayList<>();
@@ -144,7 +144,7 @@ public class Compilador {
                             break;
                         case '^':
                             setValidEspacio();
-                            setExpo(i, token);
+                            setPoten(i, token);
                             break;
                         case '*':
                             setValidEspacio();
@@ -165,8 +165,8 @@ public class Compilador {
                         case ' ':
                             break;
                         default:
-                            JOptionPane.showMessageDialog(null, "Caracter  ' " + token[i]
-                                    + " '  no admitido", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "No se permite más de un "
+                                    + "salto de linea", "Error", JOptionPane.ERROR_MESSAGE);
                             setValidError();
                             break;
                     }
@@ -187,8 +187,8 @@ public class Compilador {
                 posAdelante = (i + 2);
                 if (i <= tamañoExp) {
                     if (token[posAdelante] >= '0' && token[posAdelante] <= '9') {
-                        JOptionPane.showMessageDialog(null, "Debe existir un Operador entre un Número "
-                                + "y un Paréntesis de Cierre", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Debe existir un Operador entre un Paréntesis de Cierre "
+                                + "y un Número", "Error", JOptionPane.ERROR_MESSAGE);
                         setValidError();
                     }
                 }
@@ -228,17 +228,17 @@ public class Compilador {
                         }
                         break;
                     case '^':
-                        nombreOpr = "Exponente";
+                        nombreOpr = "Potencia";
                         if (i <= tamañoExp && i >= 1) {
                             validOperador(token, i, posAdelante);
                             setOpr(token, posAtras, posAdelante, nombreOpr);
-                            setExpo(i, token);
+                            setPoten(i, token);
                         } else if (i == 0) {
                             validInicio(nombreOpr);
                             setResta(i, token);
                         } else {
                             validTerminar(posAtras, posAdelante, token, expresion, nombreOpr);
-                            setExpo(i, token);
+                            setPoten(i, token);
                         }
                         break;
                     case '*':
@@ -284,11 +284,6 @@ public class Compilador {
                     case '{':
                     case '}':
                         JOptionPane.showMessageDialog(null, "No se permiten llaves", "Error", JOptionPane.ERROR_MESSAGE);
-                        setValidError();
-                        break;
-                    case '\n':
-                        JOptionPane.showMessageDialog(null, "No se permite más de un "
-                                + "salto de linea", "Error", JOptionPane.ERROR_MESSAGE);
                         setValidError();
                         break;
                     default:
@@ -432,10 +427,10 @@ public class Compilador {
         ide.add("Operador Resta");
     }
 
-    public void setExpo(int i, char[] token) {
+    public void setPoten(int i, char[] token) {
         operadores.push(token[i]);
         num.add(token[i]);
-        ide.add("Operador Exponente");
+        ide.add("Operador Potencia");
     }
 
     public void setMulti(int i, char[] token) {

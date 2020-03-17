@@ -1,7 +1,7 @@
 package Controlador;
 
-import Modelo.Compilador;
-import Vista.JDCompilador;
+import Modelo.Analizador;
+import Vista.JDAnalizador;
 import Vista.JDCreditos;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -23,16 +23,16 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class JCCompilador implements ActionListener, KeyListener {
+public class JCAnalizador implements ActionListener, KeyListener {
 
-    JDCompilador c = new JDCompilador(null, true);
-    Compilador comp = new Compilador();
+    JDAnalizador c = new JDAnalizador(null, true);
+    Analizador comp = new Analizador();
     DefaultTableModel modelo = new DefaultTableModel();
     private int contador = 0, cont = 1, coA = 0, coC = 0;
     DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
     JTable table = new JTable(modelo);
 
-    public JCCompilador(JDCompilador compilador) {
+    public JCAnalizador(JDAnalizador compilador) {
         this.c = compilador;
         this.c.txtIngreso.addKeyListener(this);
         this.c.btnCreditos.addActionListener(this);
@@ -43,7 +43,6 @@ public class JCCompilador implements ActionListener, KeyListener {
         this.c.btnSalir.addActionListener(this);
         this.c.jtfRespuesta.addActionListener(this);
         this.c.jtfRespuesta.setEditable(false);
-        //this.c.JTable.setEnabled(false);
         ocultar();
         UIManager.put("OptionPane.background", Color.white);
         UIManager.put("Panel.background", Color.white);
@@ -57,7 +56,7 @@ public class JCCompilador implements ActionListener, KeyListener {
             JCCreditos creditos = new JCCreditos(cr);
             cr.setVisible(true);
         } else if (c.btnArchivo == a.getSource()) {
-            explador();
+            explorador();
         } else if (c.btnPDF == a.getSource()) {
             imprimir();
         } else if (c.btnAnalizar == a.getSource()) {
@@ -177,8 +176,8 @@ public class JCCompilador implements ActionListener, KeyListener {
             JOptionPane.showMessageDialog(null, "Es necesario resolver la operación primero",
                     "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            MessageFormat header1 = new MessageFormat("Operación: " + c.txtIngreso.getText() +"  Resultado: " + c.jtfRespuesta.getText() + "");
-
+            MessageFormat header1 = new MessageFormat("Operación: " + 
+                    c.txtIngreso.getText() + "  Resultado: " + c.jtfRespuesta.getText() + "");
             MessageFormat footer = new MessageFormat("Página{0,number,integer}");
             try {
                 c.JTable.print(JTable.PrintMode.NORMAL, header1, footer);
@@ -188,7 +187,7 @@ public class JCCompilador implements ActionListener, KeyListener {
         }
     }
 
-    public void explador() {
+    public void explorador() {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File archivo = new File(chooser.getSelectedFile().getAbsolutePath());
@@ -197,9 +196,9 @@ public class JCCompilador implements ActionListener, KeyListener {
             String ST = new String(Files.readAllBytes(archivo.toPath()));
             c.txtIngreso.setText(ST);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(JDCompilador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAnalizador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(JDCompilador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAnalizador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

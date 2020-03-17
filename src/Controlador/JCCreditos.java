@@ -1,6 +1,6 @@
 package Controlador;
 
-import Vista.JDCompilador;
+import Vista.JDAnalizador;
 import Vista.JDCreditos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,9 +17,9 @@ public class JCCreditos implements ActionListener {
     public void actionPerformed(ActionEvent a) {
         if (c.btnCerrar == a.getSource()) {
             c.dispose();
-            JDCompilador com = new JDCompilador(null, true);
+            JDAnalizador com = new JDAnalizador(null, true);
             com.setLocationRelativeTo(null);
-            JCCompilador nuevo = new JCCompilador(com);
+            JCAnalizador nuevo = new JCAnalizador(com);
             com.setVisible(true);
         }
     }

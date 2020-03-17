@@ -1,7 +1,7 @@
 package Modelo;
 
-import Controlador.JCCompilador;
-import Vista.JDCompilador;
+import Controlador.JCAnalizador;
+import Vista.JDAnalizador;
 import Vista.JFPrincipal;
 
 public class Principal {
@@ -11,9 +11,9 @@ public class Principal {
         principal.setExtendedState(JFPrincipal.MAXIMIZED_BOTH);
         principal.setVisible(true);
 
-        JDCompilador c = new JDCompilador(principal, true);
+        JDAnalizador c = new JDAnalizador(principal, true);
         c.setLocationRelativeTo(null);
-        JCCompilador nuevo = new JCCompilador(c);
+        JCAnalizador nuevo = new JCAnalizador(c);
         c.setVisible(true);
     }
 
