@@ -28,7 +28,7 @@ public class JCAnalizador implements ActionListener, KeyListener {
     JDAnalizador c = new JDAnalizador(null, true);
     Analizador comp = new Analizador();
     DefaultTableModel modelo = new DefaultTableModel();
-    private int contador = 0, cont = 1, coA = 0, coC = 0;
+    private int contador = 0, cont = 1, coA = 0, coC = 0, validError;
     DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
     JTable table = new JTable(modelo);
 
@@ -110,7 +110,6 @@ public class JCAnalizador implements ActionListener, KeyListener {
     public void resultado() {
         try {
             String operacion = null, opr = null;
-            int validError;
             operacion = this.c.txtIngreso.getText();
             this.comp.asignacionNombre(operacion);
             this.c.jtfRespuesta.setText("");
@@ -176,8 +175,8 @@ public class JCAnalizador implements ActionListener, KeyListener {
             JOptionPane.showMessageDialog(null, "Es necesario resolver la operación primero",
                     "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            MessageFormat header1 = new MessageFormat("Operación: " + 
-                    c.txtIngreso.getText() + "  Resultado: " + c.jtfRespuesta.getText() + "");
+            MessageFormat header1 = new MessageFormat("Operación: "
+                    + c.txtIngreso.getText() + "  Resultado: " + c.jtfRespuesta.getText() + "");
             MessageFormat footer = new MessageFormat("Página{0,number,integer}");
             try {
                 c.JTable.print(JTable.PrintMode.NORMAL, header1, footer);
