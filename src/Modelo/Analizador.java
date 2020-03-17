@@ -136,7 +136,7 @@ public class Analizador {
                 } else {
                     setNumDecimal(i, sbuff);
                 }
-                validEspacio(i, token);
+                validEspacioNum(i, token);
             } else if (token[i] == '(') {
                 posAtras = (i - 2);
                 if (i >= 2) {
@@ -167,83 +167,83 @@ public class Analizador {
                 switch (token[i]) {
                     case '+':
                         nombreOpr = "Suma";
-                        if (token[posAdel] != ' ') {
-                            validEspacio(i, token);
-                        } else if (i <= tamañoExp && i >= 1) {
+                        if (i <= tamañoExp && i >= 1) {
                             validOperador(token, i, posAdelante);
                             setOpr(token, posAtras, posAdelante, nombreOpr);
-                            setSuma(i, token);
-                        } else if (i == 0) {
-                            validInicio(nombreOpr);
-                            setSuma(i, token);
-                        } else {
-                            validTerminar(posAtras, expresion, nombreOpr);
-                            setSuma(i, token);
                         }
+                        if (i == 0) {
+                            validInicio(nombreOpr);
+                        }
+                        if (posAdelante > expresion.length()) {
+                            validTerminar(posAtras, posAdelante, token, expresion, nombreOpr);
+                        } else if (token[posAdel] != ' ') {
+                            validEspacio(i, token);
+                        }
+                        setSuma(i, token);
                         break;
                     case '-':
                         nombreOpr = "Resta";
-                        if (token[posAdel] != ' ') {
-                            validEspacio(i, token);
-                        } else if (i <= tamañoExp && i >= 1) {
+                        if (i <= tamañoExp && i >= 1) {
                             validOperador(token, i, posAdelante);
                             setOpr(token, posAtras, posAdelante, nombreOpr);
-                            setResta(i, token);
-                        } else if (i == 0) {
-                            validInicio(nombreOpr);
-                            setResta(i, token);
-                        } else {
-                            validTerminar(posAtras, expresion, nombreOpr);
-                            setResta(i, token);
                         }
+                        if (i == 0) {
+                            validInicio(nombreOpr);
+                        }
+                        if (posAdelante > expresion.length()) {
+                            validTerminar(posAtras, posAdelante, token, expresion, nombreOpr);
+                        } else if (token[posAdel] != ' ') {
+                            validEspacio(i, token);
+                        }
+                        setResta(i, token);
                         break;
                     case '^':
                         nombreOpr = "Potencia";
-                        if (token[posAdel] != ' ') {
-                            validEspacio(i, token);
-                        } else if (i <= tamañoExp && i >= 1) {
+                        if (i <= tamañoExp && i >= 1) {
                             validOperador(token, i, posAdelante);
                             setOpr(token, posAtras, posAdelante, nombreOpr);
-                            setPoten(i, token);
-                        } else if (i == 0) {
-                            validInicio(nombreOpr);
-                            setResta(i, token);
-                        } else {
-                            validTerminar(posAtras, expresion, nombreOpr);
-                            setPoten(i, token);
                         }
+                        if (i == 0) {
+                            validInicio(nombreOpr);
+                        }
+                        if (posAdelante > expresion.length()) {
+                            validTerminar(posAtras, posAdelante, token, expresion, nombreOpr);
+                        } else if (token[posAdel] != ' ') {
+                            validEspacio(i, token);
+                        }
+                        setPoten(i, token);
                         break;
                     case '*':
                         nombreOpr = "Multiplicación";
-                        if (token[posAdel] != ' ') {
-                            validEspacio(i, token);
-                        } else if (i <= tamañoExp && i >= 1) {
+                        if (i <= tamañoExp && i >= 1) {
                             validOperador(token, i, posAdelante);
                             setOpr(token, posAtras, posAdelante, nombreOpr);
-                            setMulti(i, token);
-                        } else if (i == 0) {
-                            validInicio(nombreOpr);
-                            setResta(i, token);
-                        } else {
-                            validTerminar(posAtras, expresion, nombreOpr);
-                            setMulti(i, token);
                         }
+                        if (i == 0) {
+                            validInicio(nombreOpr);
+                        }
+                        if (posAdelante > expresion.length()) {
+                            validTerminar(posAtras, posAdelante, token, expresion, nombreOpr);
+                        } else if (token[posAdel] != ' ') {
+                            validEspacio(i, token);
+                        }
+                        setMulti(i, token);
                         break;
                     case '/':
                         nombreOpr = "División";
-                        if (token[posAdel] != ' ') {
-                            validEspacio(i, token);
-                        } else if (i <= tamañoExp && i >= 1) {
+                        if (i <= tamañoExp && i >= 1) {
                             validOperador(token, i, posAdelante);
                             setOpr(token, posAtras, posAdelante, nombreOpr);
-                            setDiv(i, token);
-                        } else if (i == 0) {
-                            validInicio(nombreOpr);
-                            setResta(i, token);
-                        } else {
-                            validTerminar(posAtras, expresion, nombreOpr);
-                            setDiv(i, token);
                         }
+                        if (i == 0) {
+                            validInicio(nombreOpr);
+                        }
+                        if (posAdelante > expresion.length()) {
+                            validTerminar(posAtras, posAdelante, token, expresion, nombreOpr);
+                        } else if (token[posAdel] != ' ') {
+                            validEspacio(i, token);
+                        }
+                        setDiv(i, token);
                         break;
                 }
             } else if (Character.isLetter(token[i])) {
@@ -324,7 +324,7 @@ public class Analizador {
         }
     }
 
-    public void validTerminar(int posAtras, String expresion, String nombreOpr) {
+    public void validTerminar(int posAtras, int posAdelante, char[] token, String expresion, String nombreOpr) {
         if (posAtras <= expresion.length()) {
             JOptionPane.showMessageDialog(null, "La expresión no puede terminar con "
                     + "un Operador " + nombreOpr, "Error", JOptionPane.ERROR_MESSAGE);
@@ -339,6 +339,42 @@ public class Analizador {
     }
 
     public void validEspacio(int i, char[] token) {
+        while (i < token.length) {
+            switch (token[i]) {
+                case '+':
+                    setValidEspacio();
+                    break;
+                case '-':
+                    setValidEspacio();
+                    break;
+                case '^':
+                    setValidEspacio();
+                    break;
+                case '*':
+                    setValidEspacio();
+                    break;
+                case '/':
+                    setValidEspacio();
+                    break;
+                case '(':
+                    setValidEspacio();
+                    break;
+                case ')':
+                    setValidEspacio();
+                    break;
+                case ' ':
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "No se permite más de un "
+                            + "salto de linea", "Error", JOptionPane.ERROR_MESSAGE);
+                    setValidError();
+                    break;
+            }
+            break;
+        }
+    }
+
+    public void validEspacioNum(int i, char[] token) {
         while (i < token.length) {
             switch (token[i]) {
                 case '+':
